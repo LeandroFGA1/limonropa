@@ -9,7 +9,7 @@ const Access = () => {
     const fetchAllRegions = async () => {
       try {
         let allRegions = [];
-        let nextPage = 'http://127.0.0.1:8000/api/RegionYComunaCL/region/';
+        let nextPage = 'https://backlimon.onrender.com/api/RegionYComunaCL/region/';
         while (nextPage) {
           const response = await axios.get(nextPage);
           allRegions = [...allRegions, ...response.data.results];

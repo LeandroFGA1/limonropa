@@ -30,7 +30,7 @@ const NavProfileMenu = () => {
         try {
             // Enviar solicitud de logout al backend
             const response = await axios.post(
-                'http://localhost:8000/api/usuarios/logout/',
+                'https://backlimon.onrender.com/api/usuarios/logout/',
                 { refresh: refreshToken },
                 {
                     headers: {

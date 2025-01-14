@@ -31,7 +31,7 @@ const ProductCardGenerator: React.FC = () => {
       setIsLoading(true);
       try {
         let allProducts: Product[] = [];
-        let nextPageUrl = "http://127.0.0.1:8000/api/productos/";
+        let nextPageUrl = "https://backlimon.onrender.com/api/productos/";
 
         while (nextPageUrl) {
           const response = await axios.get(nextPageUrl);

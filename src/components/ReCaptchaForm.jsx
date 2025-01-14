@@ -84,7 +84,7 @@ const ReCaptchaForm = ({ regions }) => {
         try {
             let response;
             do {
-                const url = `http://127.0.0.1:8000/api/RegionYComunaCL/comuna/?id_region=${regionId}&page=${currentPage}`;
+                const url = `https://backlimon.onrender.com/api/RegionYComunaCL/comuna/?id_region=${regionId}&page=${currentPage}`;
                 response = await axios.get(url);
                 allComunas.push(...response.data.results);
                 currentPage++;
@@ -117,7 +117,7 @@ const ReCaptchaForm = ({ regions }) => {
 
 const handleLogin = async () => {
     try {
-        const response = await axios.post('http://127.0.0.1:8000/api/usuarios/login/', {
+        const response = await axios.post('https://backlimon.onrender.com/api/usuarios/login/', {
             email: formData.email,
             password: formData.password,
         });
@@ -146,7 +146,7 @@ const handleLogin = async () => {
     const handleRegister = async () => {
         try {
             const filteredFormData = applyFiltersToFormData();
-            const response = await axios.post('http://127.0.0.1:8000/api/usuarios/clientes/', filteredFormData);
+            const response = await axios.post('https://backlimon.onrender.com/api/usuarios/clientes/', filteredFormData);
             alert("¡Registro exitoso!");
             setIsRegister(false);
             window.scrollTo({
