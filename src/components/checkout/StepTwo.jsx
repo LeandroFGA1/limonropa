@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { Typography, Button, Radio } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { BASE_URL } from '../../App';
 import axios from "axios";
 const StepTwo = ({regions}) => {
   const isLoggedIn = useSelector((state) => !!state.auth.accessToken);
@@ -77,7 +78,7 @@ const StepTwo = ({regions}) => {
     try {
         let response;
         do {
-            const url = `http://127.0.0.1:8000/api/RegionYComunaCL/comuna/?id_region=${regionId}&page=${currentPage}`;
+            const url = `${BASE_URL}api/RegionYComunaCL/comuna/?id_region=${regionId}&page=${currentPage}`;
             response = await axios.get(url);
             allComunas.push(...response.data.results); 
             currentPage++; 

@@ -6,6 +6,8 @@ import MainLayout from './layout/MainLayout';
 import Router from './router/Router';
 import store, { persistor } from './store/store';
 
+export const BASE_URL = "https://ecosustentable.azurewebsites.net/";
+
 const App = () => {
   return (
     <Provider store={store}>

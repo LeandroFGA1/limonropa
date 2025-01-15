@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Spinner } from "@material-tailwind/react";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from '../store/authSlice';
+import { BASE_URL } from '../App';
 
 const ReCaptchaForm = ({ regions }) => {
     const [isRegister, setIsRegister] = useState(false);
@@ -84,7 +85,7 @@ const ReCaptchaForm = ({ regions }) => {
         try {
             let response;
             do {
-                const url = `https://ecosustentable.azurewebsites.net/api/RegionYComunaCL/comuna/?id_region=${regionId}&page=${currentPage}`;
+                const url = `${BASE_URL}/api/RegionYComunaCL/comuna/?id_region=${regionId}&page=${currentPage}`;
                 response = await axios.get(url);
                 allComunas.push(...response.data.results);
                 currentPage++;
@@ -117,7 +118,7 @@ const ReCaptchaForm = ({ regions }) => {
 
 const handleLogin = async () => {
     try {
-        const response = await axios.post('https://ecosustentable.azurewebsites.net/api/usuarios/login/', {
+        const response = await axios.post(`${BASE_URL}/api/usuarios/login/`, {
             email: formData.email,
             password: formData.password,
         });
@@ -146,7 +147,7 @@ const handleLogin = async () => {
     const handleRegister = async () => {
         try {
             const filteredFormData = applyFiltersToFormData();
-            const response = await axios.post('https://ecosustentable.azurewebsites.net/api/usuarios/clientes/', filteredFormData);
+            const response = await axios.post(`${BASE_URL}/api/usuarios/clientes/`, filteredFormData);
             alert("¡Registro exitoso!");
             setIsRegister(false);
             window.scrollTo({

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReCaptchaForm from '../components/ReCaptchaForm';
 import axios from 'axios';
+import { BASE_URL } from '../App';
 
 const Access = () => {
   const [regions, setRegions] = useState([]);
@@ -9,7 +10,7 @@ const Access = () => {
     const fetchAllRegions = async () => {
       try {
         let allRegions = [];
-        let nextPage = 'https://ecosustentable.azurewebsites.net/api/RegionYComunaCL/region/';
+        let nextPage = `${BASE_URL}/api/RegionYComunaCL/region/`;
         while (nextPage) {
           const response = await axios.get(nextPage);
           allRegions = [...allRegions, ...response.data.results];

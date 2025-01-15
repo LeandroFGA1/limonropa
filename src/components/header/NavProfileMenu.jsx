@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { logout } from "../../store/authSlice"; 
 import directory from "../../assets/imgs/directory";
+import { BASE_URL } from "../../App";
 
 const NavProfileMenu = () => {
     const { email, accessToken, refreshToken } = useSelector((state) => state.auth);
@@ -28,9 +29,8 @@ const NavProfileMenu = () => {
 
     const handleLogout = async () => {
         try {
-            // Enviar solicitud de logout al backend
             const response = await axios.post(
-                'https://ecosustentable.azurewebsites.net/api/usuarios/logout/',
+                `${BASE_URL}/api/usuarios/logout/`,
                 { refresh: refreshToken },
                 {
                     headers: {
