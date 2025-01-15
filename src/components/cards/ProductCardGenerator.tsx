@@ -11,8 +11,8 @@ interface Product {
   productDescription: string;
   productPrice: number;
   productStock: number;
-  categories: { id: number; categoryName: string; discontinued: boolean }[];
-  brand: { id: number; brandName: string; discontinued: boolean };
+  categories: number[]; // Cambiado para manejar solo IDs
+  brand: number; // Cambiado para manejar solo IDs
   imageUrl: string;
 }
 
@@ -23,84 +23,58 @@ const ProductCardGenerator: React.FC = () => {
     category: "",
     brand: "",
   });
-  const [isLoading, setIsLoading] = useState(true); // Estado de carga
+  const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 20;
 
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
-      try {
-        let allProducts: Product[] = [];
-        let nextPageUrl = "https://backlimon.onrender.com/api/productos/";
+      let allProducts: Product[] = [];
+      let nextPageUrl = "https://ecosustentable.azurewebsites.net/api/productos/";
 
-        while (nextPageUrl) {
+      while (nextPageUrl) {
+        try {
           const response = await axios.get(nextPageUrl);
           const fetchedProducts: Product[] = response.data.results.map((product: any, index: number) => ({
             productCode: product.codigo_producto,
             productName: product.nombre_producto,
             productDescription: product.descripcion_producto,
-            productPrice: parseInt(product.precio_producto),
-            productStock: parseInt(product.stock_producto),
-            categories: product.categorias.map((cat: any) => ({
-              id: cat.id,
-              categoryName: cat.nombre_categoria.replace(/_/g, " "),
-              discontinued: cat.descontinuado,
-            })),
-            brand: {
-              id: product.marca.id,
-              brandName: product.marca.nombre_marca.replace(/_/g, " "),
-              discontinued: product.marca.descontinuado,
-            },
+            productPrice: parseInt(product.precio_producto, 10),
+            productStock: parseInt(product.stock_producto, 10),
+            categories: product.categorias, // Asumiendo que son IDs numéricos
+            brand: product.marca, // Asumiendo que es un ID numérico
             imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
           }));
-
-          allProducts = [...allProducts, ...fetchedProducts];
+          allProducts = allProducts.concat(fetchedProducts);
           nextPageUrl = response.data.next;
+        } catch (error) {
+          console.error("Error fetching products:", error);
+          nextPageUrl = ""; // Stop further requests on error
+          setIsLoading(false);
         }
-
-        setProducts(allProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setIsLoading(true);
       }
+
+      setProducts(allProducts);
+      setIsLoading(false);
     };
 
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((product) => {
-    const matchCategory = filters.category
-      ? product.categories.some((cat) => cat.categoryName === filters.category)
-      : true;
-    const matchBrand = filters.brand
-      ? product.brand.brandName === filters.brand
-      : true;
-    return matchCategory && matchBrand;
-  });
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
-
-  const categoryCounts = products.reduce((acc: { [key: string]: number }, product) => {
-    product.categories.forEach((cat) => {
-      acc[cat.categoryName] = (acc[cat.categoryName] || 0) + 1;
+  const applyFilters = (products: Product[]) =>
+    products.filter((product) => {
+      const matchCategory = filters.category ? product.categories.includes(parseInt(filters.category)) : true;
+      const matchBrand = filters.brand ? product.brand === parseInt(filters.brand) : true;
+      return matchCategory && matchBrand;
     });
-    return acc;
-  }, {});
-  const topCategories = Object.entries(categoryCounts)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5)
-    .map(([name]) => name);
 
-  const brandCounts = products.reduce((acc: { [key: string]: number }, product) => {
-    acc[product.brand.brandName] = (acc[product.brand.brandName] || 0) + 1;
-    return acc;
-  }, {});
-  const topBrands = Object.entries(brandCounts)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5)
-    .map(([name]) => name);
+  const filteredProducts = applyFilters(products);
+  const totalItems = filteredProducts.length;
+
+  const paginate = (products: Product[]) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return products.slice(startIndex, startIndex + itemsPerPage);
+  };
 
   const clearFilters = () => {
     setFilters({ category: "", brand: "" });
@@ -111,60 +85,27 @@ const ProductCardGenerator: React.FC = () => {
       <div className="flex flex-wrap gap-8">
         <div className="w-full lg:w-1/4 lg:ml-4 mb-8 lg:mb-0">
           <h3 className="text-xl font-bold mb-4">Filtros</h3>
-          <div>
-            <h4 className="font-semibold">Categoría</h4>
-            <ul>
-              {topCategories.map((category) => (
-                <li key={category}>
-                  <button
-                    className="text-sm text-blue-500 hover:underline"
-                    onClick={() => setFilters((prev) => ({ ...prev, category }))}
-                  >
-                    {category}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="mt-4">
-            <h4 className="font-semibold">Marca</h4>
-            <ul>
-              {topBrands.map((brand) => (
-                <li key={brand}>
-                  <button
-                    className="text-sm text-blue-500 hover:underline"
-                    onClick={() => setFilters((prev) => ({ ...prev, brand }))}
-                  >
-                    {brand}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <button
-            className="mt-4 text-red-500 text-sm"
-            onClick={clearFilters}
-          >
+          <button className="mt-4 text-red-500 text-sm" onClick={clearFilters}>
             Limpiar filtros
           </button>
         </div>
         <div className="flex-1 w-full overflow-hidden">
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className=" animate-pulse text-xl"> Cargando...</div>
+              <div className="animate-pulse text-xl">Cargando...</div>
             </div>
           ) : (
             <>
               <div className="flex flex-wrap gap-8 items-center justify-center">
-                {currentProducts.map((product) => (
+                {paginate(filteredProducts).map((product) => (
                   <ProductCard
                     key={product.productCode}
                     name={product.productName}
                     price={product.productPrice}
                     originalPrice={undefined}
                     discount={undefined}
-                    brand={product.brand.brandName}
-                    category={product.categories[0]?.categoryName}
+                    brand={`${product.brand}`} // Mostrando ID de la marca
+                    category={`${product.categories.join(", ")}`} // Mostrando IDs de las categorías
                     imageUrl={product.imageUrl}
                     rating={Math.ceil(Math.random() * 5) + 1}
                     soldCount={Math.floor(Math.random() * 5000)}
@@ -176,7 +117,7 @@ const ProductCardGenerator: React.FC = () => {
                 <DefaultPagination
                   currentPage={currentPage}
                   onPageChange={(page: number) => setCurrentPage(page)}
-                  totalItems={filteredProducts.length}
+                  totalItems={totalItems}
                   itemsPerPage={itemsPerPage}
                 />
               </div>
