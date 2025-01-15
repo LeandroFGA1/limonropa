@@ -23,7 +23,7 @@ const CardCategory = () => {
                 </h2>
             </div>
             <div className='absolute z-20 top-0 w-full h-full flex items-end justify-center pb-10'>
-                <Button size='large' color='white' className='transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:duration-1000'>
+                <Button role="button" aria-label="Ir a la categoría" color='white' className='transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:duration-1000'>
                     Ir a categoria
                 </Button>
             </div>

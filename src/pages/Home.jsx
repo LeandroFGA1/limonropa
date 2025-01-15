@@ -6,12 +6,40 @@ import CardCategoryGenerator from '../components/CardCategoryGenerator';
 import UnderlineTabs from '../components/UnderlineTabs';
 import OtherBanner from '../components/OtherBanner';
 import VideoPrueba from '../components/VideoPrueba';
-import ReCaptchaForm from '../components/ReCaptchaForm';
-import ContactForm from '../components/ContactForm';
-
+import { useDispatch } from 'react-redux';
+import { setRegions } from '../store/chileSlice';
+import { BASE_URL } from '../App';
 
 const Home = () => {
 
+    const dispatch = useDispatch();  
+
+    useEffect(() => {
+        const fetchAllRegions = async () => {
+        try {
+            let allRegions = []; 
+            let nextPage = `${BASE_URL}/api/RegionYComunaCL/region/`; 
+
+            while (nextPage) {
+            const response = await axios.get(nextPage);
+
+            allRegions = [...allRegions, ...response.data.results];
+
+            nextPage = response.data.next
+                ? response.data.next.replace('http://', 'https://') 
+                : null;
+            }
+
+            
+            dispatch(setRegions(allRegions));
+
+        } catch (error) {
+            alert(`Error al obtener las regiones, consultar con soporte`);
+        }
+        };
+
+        fetchAllRegions();  
+    }, [dispatch]);
 
     return (
         <>

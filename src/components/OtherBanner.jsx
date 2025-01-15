@@ -12,7 +12,7 @@ const OtherBanner= () => {
         </span>{" "}
         <span className="relative whitespace-nowrap text-orange-500 dark:text-orange-300">
           <svg
-            aria-hidden="true"
+            
             viewBox="0 0 418 42"
             className="absolute top-2/3 left-0 h-[0.58em] w-full fill-orange-500 dark:fill-orange-300/60"
             preserveAspectRatio="none"
@@ -25,7 +25,7 @@ const OtherBanner= () => {
       <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-white-400 text-white-500 dark:text-gray-300 leading-7">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellendus ipsam veritatis fugiat odit dignissimos at alias amet corporis eum maiores cumque, facere culpa voluptate provident quis! Excepturi, eligendi aperiam.
       </h2>
-      <Button size="large" color="white"  className="mt-10">Lorem,in tempore.</Button>
+      <Button  color="white"  className="mt-10">Lorem,in tempore.</Button>
     </div>
   );
 };

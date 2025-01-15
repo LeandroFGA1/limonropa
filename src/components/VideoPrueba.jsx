@@ -1,27 +1,28 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, Typography, Button } from "@material-tailwind/react";
-import sampleVideo from '../assets/videos/video.mp4';
+
 const VideoPrueba = () => {
     return (
-        <div className="flex items-center justify-center  flex-wrap px-10  h-fit  ">
-            <div className="w-[90vw] h-full ">
+        <div className="flex items-center justify-center flex-wrap px-10 h-fit">
+            <div className="w-[90vw] h-full">
                 <Card className="w-full h-full flex-col lg:flex-row min-w-[230px]">
                     <CardHeader
                         shadow={false}
                         floated={false}
                         className="m-0 w-full max-h-[500px] lg:w-2/5 shrink-0 rounded-r-none flex items-center justify-center"
                     >
-                        
-                        <video 
-                            src={sampleVideo} 
-                            autoPlay 
+                        {/* Usar iframe para incrustar video de YouTube */}
+                        <iframe 
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/6mlrOKeahFk" 
+                            title="Video de prueba"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
                             
-                            muted 
-                            controls 
-                            className='h-[90%] max-h[200px] object-cover min-w-[300px] hidden  videopoint:block'
-                        >
-                            Tu navegador no soporta la etiqueta de video.
-                        </video>
+                            className="h-[90%] max-h-[200px] object-cover min-w-[300px]"
+                        ></iframe>
                     </CardHeader>
                     <CardBody className='flex flex-col justify-center'>
                         <Typography variant="h6" color="gray" className="mb-4 uppercase">

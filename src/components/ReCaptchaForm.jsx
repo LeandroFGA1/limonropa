@@ -2,10 +2,10 @@ import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Spinner } from "@material-tailwind/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginSuccess } from '../store/authSlice';
 import { BASE_URL } from '../App';
-
+import { setCommunes } from '../store/chileSlice';
 const ReCaptchaForm = ({ regions }) => {
     const [isRegister, setIsRegister] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +15,8 @@ const ReCaptchaForm = ({ regions }) => {
     const siteKey = '6Ld10nAqAAAAAAhQJFjfUonRt-6H1JH3Kc5EQxXK';
     const [comunas, setComunas] = useState([]);
     const [page, setPage] = useState(1);
+    const dispatch = useDispatch();
+    const communes = useSelector((state) => state.chile.communes);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -73,7 +75,7 @@ const ReCaptchaForm = ({ regions }) => {
         });
     };
 
-    const dispatch = useDispatch();
+    
 
     const [nextPageUrl, setNextPageUrl] = useState(null); 
 

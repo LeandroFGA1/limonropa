@@ -4,6 +4,7 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice";
+import chileReducer from "./chileSlice"
 
 // storage.removeItem("persist:root");
 if (import.meta.env.MODE === "development" && !sessionStorage.getItem("storageCleared")) {
@@ -25,6 +26,7 @@ const asyncDispatchMiddleware = (store) => (next) => (action) => {
 const rootReducer = combineReducers({
   cart: cartReducer,
   auth: authReducer,
+  chile: chileReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
