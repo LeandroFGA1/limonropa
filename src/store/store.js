@@ -5,7 +5,8 @@ import { combineReducers } from "redux";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice";
 import chileReducer from "./chileSlice"
-
+import productReducer from "./productSlice";
+import orderReducer from "./orderSlice";
 // storage.removeItem("persist:root");
 if (import.meta.env.MODE === "development" && !sessionStorage.getItem("storageCleared")) {
   storage.removeItem("persist:root");
@@ -27,6 +28,9 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   auth: authReducer,
   chile: chileReducer,
+  products: productReducer,
+  order: orderReducer,
+  
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

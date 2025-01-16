@@ -3,6 +3,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import { DefaultPagination } from "./DefaultPagination";
 import ExternalDirectory from "../../assets/imgs/ExternalDirectory";
+import { BASE_URL } from "../../App";
 const imageKeys = Object.keys(ExternalDirectory);
 
 interface Product {
@@ -11,8 +12,8 @@ interface Product {
   productDescription: string;
   productPrice: number;
   productStock: number;
-  categories: number[]; // Cambiado para manejar solo IDs
-  brand: number; // Cambiado para manejar solo IDs
+  categories: (number | string)[]; 
+  brand: (number | string); 
   imageUrl: string;
 }
 
@@ -25,12 +26,14 @@ const ProductCardGenerator: React.FC = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 20;
+  const [categoryCounts, setCategoryCounts] = useState<Map<string, number>>(new Map());
+  const [brandCounts, setBrandCounts] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
       let allProducts: Product[] = [];
-      let nextPageUrl = "https://ecosustentable.azurewebsites.net/api/productos/";
+      let nextPageUrl = `${BASE_URL}/api/productos/`;
 
       while (nextPageUrl) {
         try {
@@ -41,15 +44,15 @@ const ProductCardGenerator: React.FC = () => {
             productDescription: product.descripcion_producto,
             productPrice: parseInt(product.precio_producto, 10),
             productStock: parseInt(product.stock_producto, 10),
-            categories: product.categorias, // Asumiendo que son IDs numéricos
-            brand: product.marca, // Asumiendo que es un ID numérico
+            categories: product.categorias, 
+            brand: product.marca, 
             imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
           }));
           allProducts = allProducts.concat(fetchedProducts);
           nextPageUrl = response.data.next;
         } catch (error) {
           console.error("Error fetching products:", error);
-          nextPageUrl = ""; // Stop further requests on error
+          nextPageUrl = ""; 
           setIsLoading(false);
         }
       }
@@ -61,10 +64,30 @@ const ProductCardGenerator: React.FC = () => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    
+    const countCategories = new Map<string, number>();
+    const countBrands = new Map<string, number>();
+
+    products.forEach((product) => {
+      product.categories.forEach((category) => {
+        const categoryStr = category.toString();
+        countCategories.set(categoryStr, (countCategories.get(categoryStr) || 0) + 1);
+      });
+
+      const brandStr = product.brand.toString();
+      countBrands.set(brandStr, (countBrands.get(brandStr) || 0) + 1);
+    });
+
+    setCategoryCounts(countCategories);
+    setBrandCounts(countBrands);
+  }, [products]);
+
   const applyFilters = (products: Product[]) =>
     products.filter((product) => {
-      const matchCategory = filters.category ? product.categories.includes(parseInt(filters.category)) : true;
-      const matchBrand = filters.brand ? product.brand === parseInt(filters.brand) : true;
+      const matchCategory =
+        filters.category ? product.categories.some((cat) => cat.toString() === filters.category) : true;
+      const matchBrand = filters.brand ? product.brand.toString() === filters.brand : true;
       return matchCategory && matchBrand;
     });
 
@@ -80,15 +103,69 @@ const ProductCardGenerator: React.FC = () => {
     setFilters({ category: "", brand: "" });
   };
 
+  const handleCategoryChange = (category: string) => {
+    setFilters((prev) => ({ ...prev, category }));
+  };
+
+  const handleBrandChange = (brand: string) => {
+    setFilters((prev) => ({ ...prev, brand }));
+  };
+
+  
+  const topCategories = Array.from(categoryCounts.entries())
+    .sort((a, b) => b[1] - a[1]) 
+    .slice(0, 5);
+
+  const topBrands = Array.from(brandCounts.entries())
+    .sort((a, b) => b[1] - a[1]) 
+    .slice(0, 5);
+
   return (
     <div className="container mx-auto px-1 sm:px-4 py-8">
       <div className="flex flex-wrap gap-8">
         <div className="w-full lg:w-1/4 lg:ml-4 mb-8 lg:mb-0">
           <h3 className="text-xl font-bold mb-4">Filtros</h3>
+          
+          
+          <div className="mb-4">
+            <h4 className="font-semibold">Categoría</h4>
+            <div className="flex flex-wrap gap-2">
+              {topCategories.map(([category, count]) => (
+              <button
+                key={category}
+                className="text-blue-500 p-1 bg-main2/20 rounded"
+                onClick={() => handleCategoryChange(category)}
+              >
+                {`Categoría ${category} `}
+              </button>
+            ))}
+            </div>
+            
+          </div>
+
+          
+          <div className="mb-4">
+            <h4 className="font-semibold">Marca</h4>
+            <div className="flex flex-wrap gap-2">
+              {topBrands.map(([brand, count]) => (
+              <button
+                key={brand}
+                className="text-blue-500 bg-main3/20 p-1 rounded"
+                onClick={() => handleBrandChange(brand)}
+              >
+                {`Marca ${brand}`}
+              </button>
+            ))}
+            </div>
+            
+          </div>
+
+          
           <button className="mt-4 text-red-500 text-sm" onClick={clearFilters}>
             Limpiar filtros
           </button>
         </div>
+
         <div className="flex-1 w-full overflow-hidden">
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -104,8 +181,8 @@ const ProductCardGenerator: React.FC = () => {
                     price={product.productPrice}
                     originalPrice={undefined}
                     discount={undefined}
-                    brand={`${product.brand}`} // Mostrando ID de la marca
-                    category={`${product.categories.join(", ")}`} // Mostrando IDs de las categorías
+                    brand={`${product.brand}`} 
+                    category={`${product.categories.join(", ")}`} 
                     imageUrl={product.imageUrl}
                     rating={Math.ceil(Math.random() * 5) + 1}
                     soldCount={Math.floor(Math.random() * 5000)}

@@ -10,7 +10,6 @@ import { setRegions } from '../store/chileSlice';
 const CheckOut = () => {
   const location = useLocation();
   const cartItems = location.state?.cartItems || [];
-
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
   const [isFirstStep, setIsFirstStep] = React.useState(false);
@@ -76,12 +75,19 @@ const CheckOut = () => {
       </div>
 
       <div className="mt-8 flex justify-between">
-        <Button onClick={handlePrev} disabled={isFirstStep}>
+        <Button 
+          onClick={handlePrev} 
+          disabled={isFirstStep || !totalAmount || totalAmount === 0}
+        >
           Atrás
         </Button>
-        <Button onClick={handleNext} disabled={isLastStep}>
+        <Button 
+          onClick={handleNext} 
+          disabled={isLastStep || !totalAmount || totalAmount === 0}
+        >
           Siguiente
         </Button>
+
       </div>
 
       <div className="bottom-0 left-0 w-full px-8 py-4">

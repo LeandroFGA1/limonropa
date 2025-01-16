@@ -7,10 +7,10 @@ import Footer from '../components/Footer'
 const MainLayout = ({children}) => {
     return (
         <>
-            <header className='' >
+            <header className=' ' >
                 <Header/>
             </header>
-            <main className='pt-[100px]   '>
+            <main className='pt-[100px] bg-main  '>
                 {children}
                 
             </main>

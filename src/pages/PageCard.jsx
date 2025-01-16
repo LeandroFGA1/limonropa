@@ -74,8 +74,8 @@ const PageCard = () => {
   const productName = product.name.replace(/_/g, ' ');
 
   return (
-    <div className=' w-full flex items-center justify-center '> 
-      <div className="group border-gray-100/30 flex w-[35%] min-w-[290px] max-w-full flex-col self-center overflow-hidden rounded-lg border bg-main/20 shadow-md">
+    <div className=' w-full flex items-center justify-center bg-gray-300 '> 
+      <div className="group border-gray-100/30 flex w-[35%] min-w-[290px] max-w-full flex-col self-center overflow-hidden rounded-lg border bg-main/50 shadow-md">
         <div className='contenedor'>
           <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl max-w-[800px]">
             <img

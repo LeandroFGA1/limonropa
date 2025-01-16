@@ -1,14 +1,20 @@
 import React, { useState,useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Typography, Button, Radio } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import { setOrder } from '../../store/orderSlice';
 import { BASE_URL } from '../../App';
 import axios from "axios";
 const StepTwo = ({regions}) => {
   const isLoggedIn = useSelector((state) => !!state.auth.accessToken);
+  const dispatch = useDispatch();
   const [showGuestForm, setShowGuestForm] = useState(false);
   const [comunas, setComunas] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(isLoggedIn ? "efectivo" : "");
+  const [trackingNumber, setTrackingNumber] = useState(isLoggedIn ? `T#${Math.floor(Math.random() * 100000) + 50000}` : "");
+  const [orderCode, setOrderCode] = useState(null);
+  
   const [guestData, setGuestData] = useState({
     primer_nombre: "",
     segundo_nombre: "",
@@ -37,8 +43,8 @@ const StepTwo = ({regions}) => {
           direccion: '',
       });
   
-  const [paymentMethod, setPaymentMethod] = useState("");
-  const [orderCode, setOrderCode] = useState(null);
+  
+  
 
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
@@ -59,17 +65,55 @@ const StepTwo = ({regions}) => {
     return filteredData;
   };
 
-  const handleGuestSubmit = (e) => {
+  const handleGuestSubmit = async (e) => {
     e.preventDefault();
     const filteredData = applyFiltersToGuestData();
-    setOrderCode(`P#${Math.floor(Math.random() * 100000) + 50000}`);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+  
+    if (!filteredData.direccion) {
+      filteredData.direccion = "calle falsa 123";
+    }
+  
     
-    setShowGuestForm(false);
+    filteredData.tracking_number = trackingNumber || ""; 
+    filteredData.pago = paymentMethod; 
+
+  
+    try {
+      
+      const response = await axios.post(
+        `${BASE_URL}/api/pedidos/`,
+        {
+          direccion_envio: filteredData.direccion,
+          ...filteredData, 
+        }
+      );
+  
+      
+      dispatch(setOrder({
+        ...response.data,
+        pago: filteredData.pago,  
+        tracking_number: response.data.tracking_number,  
+    }));
+    
+      console.log("Pedido enviado:", response.data);
+  
+      setOrderCode(`P#${Math.floor(Math.random() * 100000) + 50000}`);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+  
+      setShowGuestForm(false);
+    } catch (error) {
+      console.error("Error al enviar el pedido:", error);
+    }
   };
+  
+  useEffect(() => {
+    if (isLoggedIn && paymentMethod) {
+      handleGuestSubmit(new Event("submit"));
+    }
+  }, [isLoggedIn, paymentMethod])
   const fetchComunas = async (regionId) => {
     setLoading(true);
     let currentPage = 1;

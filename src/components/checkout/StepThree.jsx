@@ -3,7 +3,17 @@ import { useSelector } from "react-redux";
 import { Typography } from "@material-tailwind/react";
 
 const StepThree = () => {
-  const { items, paymentMethod, totalAmount, orderCode } = useSelector((state) => state.cart);
+  
+  const { items = [], paymentMethod, totalAmount, orderCode: cartOrderCode } = useSelector((state) => state.cart);
+  const { tracking_number } = useSelector((state) => state.order);  
+
+  
+  if (!items.length) {
+    return <p>No hay productos en tu carrito.</p>;
+  }
+
+  
+  const orderCode = tracking_number || cartOrderCode || "Generando...";
 
   return (
     <div>
@@ -14,13 +24,11 @@ const StepThree = () => {
         <pre className="text-sm text-gray-700 overflow-auto max-w-full whitespace-pre-wrap break-words">
           {`Pedido:
 Productos: 
-${items.map((item) => `${item.name} (Cantidad: ${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
+${items.map((item) => `${item.name.replace(/_/g, ' ')} (Cantidad: ${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
 
-Precio Total: $${totalAmount.toFixed(2)}
+Precio Total: $${totalAmount}
 
-Método de Pago: ${paymentMethod || "No seleccionado"}
-
-Código de Pedido: ${orderCode || "Generando..."} 
+Código de Pedido (Tracking): ${orderCode} 
 
 Recibirás un PDF con los detalles de tu pedido por WhatsApp/Correo.`}
         </pre>

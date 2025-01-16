@@ -3,7 +3,7 @@ import ProductCardGenerator from '../components/cards/ProductCardGenerator'
 
 const Markert = () => {
     return (
-        <div>
+        <div className='bg-gray-300'>
             <ProductCardGenerator/>
         </div>
     )

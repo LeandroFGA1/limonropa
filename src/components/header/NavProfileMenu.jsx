@@ -29,6 +29,7 @@ const NavProfileMenu = () => {
 
     const handleLogout = async () => {
         try {
+            
             const response = await axios.post(
                 `${BASE_URL}/api/usuarios/logout/`,
                 { refresh: refreshToken },
@@ -45,7 +46,9 @@ const NavProfileMenu = () => {
                 dispatch(logout());
             }
         } catch (error) {
+            
             console.error('Error durante el logout:', error);
+            dispatch(logout());
         }
     };
 

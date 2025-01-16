@@ -137,8 +137,7 @@ const handleLogin = async () => {
             accessToken: access,
             refreshToken: refresh,
         }));
-        alert("¡Inicio de sesión exitoso!");
-
+        
         navigate("/");
     } catch (error) {
         alert("Error en el inicio de sesión.");
