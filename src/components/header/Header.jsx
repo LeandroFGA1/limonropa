@@ -61,7 +61,7 @@ const Header = () => {
                         <div className="block sm:hidden">
                             <Menu>
                                 <MenuHandler>
-                                    <Button size="small" variant="outlined" className="flex flex-col gap-1 p-3">
+                                    <Button  variant="outlined" className="flex flex-col gap-1 p-3">
                                         <div className="bg-black w-8 h-1"></div>
                                         <div className="bg-black w-8 h-1"></div>
                                         <div className="bg-black w-8 h-1"></div>

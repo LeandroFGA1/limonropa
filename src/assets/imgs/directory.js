@@ -22,6 +22,7 @@ import cartDelete from "./cartDelete.svg"
 import cartRun from "./cartRun.svg"
 import userDef from "./userDef.svg"
 import tulioCEO from "./tulio-ceo.jpg"
+import About1 from "./About1.png"
 
 export default {
     "card-bank":credit,
@@ -47,6 +48,7 @@ export default {
     "cartDelete":cartDelete,
     "cartRun":cartRun,
     "userDef":userDef,
-    "tulioCEO":tulioCEO
+    "tulioCEO":tulioCEO,
+    "About1":About1
 
 }
