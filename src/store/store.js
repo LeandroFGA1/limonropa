@@ -5,13 +5,19 @@ import { combineReducers } from "redux";
 import cartReducer from "./cartSlice";
 import authReducer from "./authSlice";
 import chileReducer from "./chileSlice"
-import productReducer from "./productSlice";
 import orderReducer from "./orderSlice";
+import { profileReducer } from "./profileSlice";
 // storage.removeItem("persist:root");
-if (import.meta.env.MODE === "development" && !sessionStorage.getItem("storageCleared")) {
-  storage.removeItem("persist:root");
-  sessionStorage.setItem("storageCleared", "true");
-}
+
+  // const savedProfile = storage.getItem("persist:profile");
+  if (import.meta.env.MODE === "development" && !sessionStorage.getItem("storageCleared")) {
+    storage.removeItem("persist:root");
+    sessionStorage.setItem("storageCleared", "true");
+  }
+  // if (savedProfile) {
+  //   storage.setItem("persist:profile", savedProfile);
+  // }
+
 const persistConfig = {
   key: "root",
   storage,
@@ -28,8 +34,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   auth: authReducer,
   chile: chileReducer,
-  products: productReducer,
   order: orderReducer,
+  profile: profileReducer,
   
 });
 
@@ -42,5 +48,6 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
 
 export default store;

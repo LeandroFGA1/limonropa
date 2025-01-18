@@ -74,7 +74,7 @@ const CarouselBanner = () => {
                     <div className='flex flex-col items-center sm:flex-row text-7xl  uppercase font-bold text-white' style={{ textShadow: '2px 2px 4px black' }}>
                         <h2 className=' bg-white/30 backdrop-blur-lg py-4 w-fit transition-all'>¡bene</h2>
                         <img src={directory.logo} alt="logo" className='h-0 group-hover:h-28 delay-300 transition-all   hover:animate-hithere z-20' />
-                        <g2 className='bg-white/30 backdrop-blur-lg py-4  w-fit  transition-all'>ficios!</g2>
+                        <h2 className='bg-white/30 backdrop-blur-lg py-4  w-fit  transition-all'>ficios!</h2>
                     </div>
                     <p className='text-3xl capitalize font-bold'style={{ textShadow: '2px 2px 4px black' }}>registrate y descubre beneficios unicos</p>
                 </div>

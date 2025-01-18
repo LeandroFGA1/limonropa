@@ -6,7 +6,7 @@ import PageCard from '../pages/PageCard';
 import CheckOut from '../pages/CheckOut';
 import Access from '../pages/Access';
 import AboutUs from '../pages/AboutUs';
-
+import Profile from '../pages/Profile';
 const Router = () => {
     const location = useLocation();
 
@@ -22,6 +22,7 @@ const Router = () => {
             <Route path='/checkOut' element={<CheckOut />} />
             <Route path='/access' element={<Access />} />
             <Route path='/aboutUs' element={<AboutUs />} />
+            <Route path='/access/Profile' element={<Profile/>}/>
         </Routes>
     );
 }

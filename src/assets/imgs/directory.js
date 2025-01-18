@@ -23,6 +23,11 @@ import cartRun from "./cartRun.svg"
 import userDef from "./userDef.svg"
 import tulioCEO from "./tulio-ceo.jpg"
 import About1 from "./About1.png"
+import avatarCat from "./avatarCat.svg"
+import avatarDog from "./avatarDog.svg"
+import avatarLion from "./avatarLion.svg"
+import avatarMonkey from "./avatarMonkey.svg"
+import avatarPig from "./avatarPig.svg"
 
 export default {
     "card-bank":credit,
@@ -49,6 +54,11 @@ export default {
     "cartRun":cartRun,
     "userDef":userDef,
     "tulioCEO":tulioCEO,
-    "About1":About1
+    "About1":About1,
+    "avatarCat":avatarCat,
+    "avatarDog":avatarDog,
+    "avatarLion":avatarLion,
+    "avatarMonkey":avatarMonkey,
+    "avatarPig":avatarPig
 
 }

@@ -15,7 +15,7 @@ const VideoPrueba = () => {
                         <iframe 
                             width="100%" 
                             height="100%" 
-                            src="https://www.youtube.com/embed/6mlrOKeahFk" 
+                            src="https://www.youtube-nocookie.com/embed/6mlrOKeahFk" 
                             title="Video de prueba"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen 

@@ -34,7 +34,7 @@ const Home = () => {
             dispatch(setRegions(allRegions));
 
         } catch (error) {
-            alert(`Error al obtener las regiones, consultar con soporte`);
+            console.log(`Error al obtener las regiones, consultar con soporte`);
         }
         };
 
