@@ -72,11 +72,13 @@ const NavProfileMenu = () => {
                 )}
             </MenuHandler>
             <MenuList className="text-black">
-                <MenuItem className="flex items-center gap-2" disabled>
+                <MenuItem className="flex items-center gap-2" disabled={!email}>
+                <Link to={"/access/profile"}> 
                     <img alt="" />
                     <Typography variant="small" className="font-medium">
                         Editar perfil
                     </Typography>
+                </Link>
                 </MenuItem>
                 <MenuItem className="flex items-center gap-2">
                     <img alt="" />
