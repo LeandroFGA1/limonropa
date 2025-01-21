@@ -22,11 +22,6 @@ module.exports = withMT({
         "main2": "#ccc0ad",
         "main3": "#776549",
         "bg-body": "#faf5ef",
-        "category1":"#5320cb",
-        "category2":"#20cbc2",
-        "category3":"#6acb20",
-        "category4":"#d9d212",
-        "category5":"#d93012",
       },
       keyframes: {
         drawTop: {
@@ -68,7 +63,12 @@ module.exports = withMT({
             transform: 'translateY(-100%) scale(0.5)',
             opacity: '0',
           },
-        }
+        },
+        scrollDown: {
+          '0%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(6px)', },
+          '100%': { transform: 'translateY(0)' },
+        },
       },
       animation: {
         drawTop: 'drawTop 0.3s forwards',
@@ -77,6 +77,7 @@ module.exports = withMT({
         hithere: 'hithere 1s ease forwards',
         'infinite-scroll': 'infinite-scroll 45s linear infinite',
         "cartAnimation": 'cartAnimation 1.5s ease-in-out forwards',
+        scrollDown: 'scrollDown 2s ease infinite',
       },
     },
   },

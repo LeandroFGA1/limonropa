@@ -58,20 +58,20 @@ export function CartModal() {
             size="sm"
             color="white"
             onClick={handleOpen}
-            className="px-2 bg-transparent hover:bg-yellow-600 capitalize"
+            className="px-2 bg-transparent hover:bg-white capitalize"
           >
-            <img src={directory.cart} className="h-8" alt="Cart" />
+            <img src={directory.cart} className="h-8 min-w-[30px]" alt="Cart" />
           </Button>
         </Badge>
       )}
       {cartCount === 0 && (
-        <Button
+      <Button
         size="sm"
         color="white"
         onClick={handleOpen}
-        className="px-2 bg-transparent hover:bg-yellow-600 capitalize"
+        className="px-2 bg-transparent border-[2px] border-transparent hover:border-black active:border-white/80 hover:bg-white/90 capitalize hover:py-2 flex items-center justify-center "
       >
-        <img src={directory.cart} className="h-8" alt="Cart" />
+        <img src={directory.cart} className="h-8 min-w-[30px]  transition-all" alt="Cart" />
       </Button>
       )}
 

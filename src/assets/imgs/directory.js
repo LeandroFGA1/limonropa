@@ -28,6 +28,7 @@ import avatarDog from "./avatarDog.svg"
 import avatarLion from "./avatarLion.svg"
 import avatarMonkey from "./avatarMonkey.svg"
 import avatarPig from "./avatarPig.svg"
+import scrollToB from "./scroll-to-b.svg"
 
 export default {
     "card-bank":credit,
@@ -59,6 +60,7 @@ export default {
     "avatarDog":avatarDog,
     "avatarLion":avatarLion,
     "avatarMonkey":avatarMonkey,
-    "avatarPig":avatarPig
+    "avatarPig":avatarPig,
+    "scrollToB":scrollToB
 
 }

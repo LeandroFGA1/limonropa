@@ -1,25 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import directory from '../assets/imgs/directory';
 import { Button } from '@material-tailwind/react';
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfileAvatar } from '../store/profileSlice';
+import store from "../store/store.js";
+
 const Profile = () => {
     const dispatch = useDispatch();
     const email = useSelector((state) => state.auth.email);
-    const [selectedAvatar, setSelectedAvatar] = useState(null);
+    const userProfiles = useSelector((state) => state.profile.userProfiles);
+    const initialAvatar = email ? userProfiles[email.toLowerCase()] : null; // Avatar inicial
+    const [selectedAvatar, setSelectedAvatar] = useState(initialAvatar);
     const [selectedIndex, setSelectedIndex] = useState(null);
-    const [changed,setChanged] =useState(false);
+    const [changed, setChanged] = useState(false);
+
+    // Actualiza el índice seleccionado al cargar el componente
+    useEffect(() => {
+        if (initialAvatar) {
+            const avatarIndex = avatarOptions.findIndex(avatar => avatar.id === initialAvatar);
+            setSelectedIndex(avatarIndex >= 0 ? avatarIndex + 1 : null);
+        }
+    }, [initialAvatar]);
+
+    const avatarOptions = [
+        { src: directory.avatarCat, id: "avatarCat", alt: 'imagen de perfil gato', color: "bg-pink-200" },
+        { src: directory.avatarDog, id: "avatarDog", alt: 'imagen de perfil de perro', color: "bg-blue-400" },
+        { src: directory.avatarLion, id: "avatarLion", alt: 'imagen de perfil de leon', color: "bg-purple-400 " },
+        { src: directory.avatarPig, id: "avatarPig", alt: 'imagen de perfil de cerdo', color: "bg-pink-400" },
+        { src: directory.avatarMonkey, id: "avatarMonkey", alt: 'imagen de perfil de mono', color: "bg-green-600" },
+    ];
 
     const handleAvatarClick = (index, value) => {
         setSelectedAvatar(value);
         setSelectedIndex(index);
         setChanged(false);
     };
+
     const handleSaveAvatar = () => {
+        console.log("Avatar seleccionado para guardar:", selectedAvatar);
+        console.log("Email actual del usuario:", email);
+        console.log("Estado de userProfiles antes de despachar:", store.getState().profile.userProfiles);
         if (email && selectedAvatar) {
-            dispatch(updateProfileAvatar({ email, avatar: selectedAvatar })); 
+            const normalizedEmail = email.toLowerCase();
+            dispatch(updateProfileAvatar({ email: normalizedEmail, avatar: selectedAvatar }));
+            console.log("Acción despachada para updateProfileAvatar:", {
+                email: normalizedEmail,
+                avatar: selectedAvatar,
+            });
+        } else {
+            console.warn("No se pudo guardar el avatar: email o avatar están indefinidos");
         }
-        console.log("Avatar seleccionado:", selectedAvatar);
+        console.log("Estado de userProfiles después de despachar:", store.getState().profile.userProfiles);
         setChanged(true);
     };
 
@@ -28,47 +59,60 @@ const Profile = () => {
             <h2 className="text-center font-bold text-2xl pb-10">
                 ¡Elije tu avatar, lo puedes cambiar cuando quieras!
             </h2>
-            <ul className="flex items-center justify-center flex-row flex-wrap gap-6 bg-main2/20">
-                <li
-                    className={` border-[4px] rounded-lg group hover:rotate-45 transition-all ${
-                        selectedIndex === 0 ? 'bg-main border-black' : 'bg-main2'
-                    }`}
-                    onClick={() => handleAvatarClick(0, 'PP')}
-                >
-                    <div className="w-[100px] h-[100px] hover:bg-white rounded-full  p-2 flex items-center justify-center group-hover:-rotate-45 transition-all">
-                        <span className="font-bold text-5xl">PP</span>
-                    </div>
-                </li>
-                {[
-                    { src: directory.avatarCat, id:"avatarCat", alt: 'imagen de perfil gato',color:"bg-pink-200" },
-                    { src: directory.avatarDog, id:"avatarDog", alt: 'imagen de perfil de perro',color:"bg-blue-400" },
-                    { src: directory.avatarLion, id:"avatarLion", alt: 'imagen de perfil de leon',color:"bg-purple-400 " },
-                    { src: directory.avatarPig, id:"avatarPig", alt: 'imagen de perfil de cerdo',color:"bg-pink-400" },
-                    { src: directory.avatarMonkey, id:"avatarMonkey", alt: 'imagen de perfil de mono',color:"bg-green-600" },
-                ].map((avatar, index) => (
-                    <li
-                        key={index + 1}
-                        className={` rounded-lg group hover:rotate-45 transition-all border-[4px] ${
-                            selectedIndex === index + 1 ? 'bg-main  border-black' : 'bg-main2'
-                        }`}
-                        onClick={() => handleAvatarClick(index + 1, avatar.id)}
-                    >
-                        <div className={`w-[100px] h-[100px] hover:${avatar.color} ${avatar.color=="bg-blue-400"?"hover:bg-blue-400":""} ${avatar.color=="bg-green-600"?"hover:bg-green-600":""}  rounded-full p-2 group-hover:-rotate-45 transition-all`}>
-                            <img
-                                src={avatar.src}
-                                alt={avatar.alt}
-                                className="h-full w-full object-cover"
-                            />
-                        </div>
-                    </li>
-                ))}
-            </ul>
-            <Button onClick={() => handleSaveAvatar()} className={`${changed?"bg-green-500":""}`}>
-                <span className={`${changed?" hidden":"block"}`}>Cambiar</span>
-                <span className={` -translate-x-10 ${changed?" block translate-x-0":" hidden"}`}>✔</span>
-            
-            </Button>
 
+            {/* Muestra el avatar actual */}
+            {initialAvatar && (
+                <div className="flex flex-col items-center mb-10">
+                    <h3 className="font-semibold text-xl mb-4">Tu imagen de perfil actual:</h3>
+                    <div className="w-[100px] h-[100px] rounded-full border-[4px] border-blue-500 flex items-center justify-center">
+                        {avatarOptions.find(avatar => avatar.id === initialAvatar)?.src ? (
+                            <img
+                                src={avatarOptions.find(avatar => avatar.id === initialAvatar).src}
+                                alt="Imagen de perfil actual"
+                                className="h-full w-full object-cover rounded-full"
+                            />
+                        ) : (
+                            <span className="font-bold text-3xl">{initialAvatar}</span>
+                        )}
+                    </div>
+                </div>
+            )}
+            
+
+            {/* Opciones de avatares */}
+            <ul className="flex items-center justify-center flex-row flex-wrap gap-6 bg-main2/20">
+                {avatarOptions
+                    .filter(avatar => avatar.id !== initialAvatar) // Filtra para no mostrar el avatar actual
+                    .map((avatar, index) => (
+                        <li
+                            key={index + 1}
+                            className={`rounded-lg group hover:rotate-45 transition-all border-[4px] ${
+                                selectedIndex === index + 1 ? 'bg-main border-black' : 'bg-main2'
+                            }`}
+                            onClick={() => handleAvatarClick(index + 1, avatar.id)}
+                        >
+                            <div
+                                className={`w-[100px] h-[100px] hover:${avatar.color} ${
+                                    avatar.color === "bg-blue-400" ? "hover:bg-blue-400" : ""
+                                } ${
+                                    avatar.color === "bg-green-600" ? "hover:bg-green-600" : ""
+                                } rounded-full p-2 group-hover:-rotate-45 transition-all`}
+                            >
+                                <img
+                                    src={avatar.src}
+                                    alt={avatar.alt}
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
+                        </li>
+                    ))}
+            </ul>
+
+            {/* Botón para guardar */}
+            <Button onClick={handleSaveAvatar} className={`${changed ? "bg-green-500" : ""}`}>
+                <span className={`${changed ? "hidden" : "block"}`}>Cambiar</span>
+                <span className={`-translate-x-10 ${changed ? "block translate-x-0" : "hidden"}`}>✔️</span>
+            </Button>
         </div>
     );
 };

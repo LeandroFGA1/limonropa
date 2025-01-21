@@ -28,7 +28,7 @@ const Access = () => {
           
           dispatch(setRegions(allRegions));
         } catch (error) {
-          alert('Error al obtener las regiones, consultar con soporte');
+          // alert('Error al obtener las regiones, consultar con soporte');
         }
       };
 

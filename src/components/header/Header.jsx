@@ -82,9 +82,9 @@ const Header = () => {
                             </Menu>
                         </div>
                         <div className="hidden sm:flex items-center justify-center">
-                            <Link to={"/"}>
+                            {/* <Link to={"/"}>
                                 <Button className=' text-black bg-main2 hover:bg-main text-base backdrop-blur'>Inicio</Button>
-                            </Link>
+                            </Link> */}
                             
                             <MenuWhitItems title="Tienda" link="/store" menuItems={technologyMenuItems} />
                             <MenuWhitItems title="Sobre Nosotros" link="/aboutUs" menuItems={developmentMenuItems} />

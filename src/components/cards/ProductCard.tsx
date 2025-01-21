@@ -28,9 +28,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
 
   const formatText = (text: string) => {
+    
     return text.replace(/_/g, " ");
   };
-
+  
   return (
     <div className=" bg-main2/20 rounded-lg shadow-md overflow-hidden min-w-[280px] max-w-sm mx-auto hover:shadow-lg transition-shadow duration-300">
       <div className="relative">

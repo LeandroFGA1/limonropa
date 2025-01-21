@@ -22,9 +22,9 @@ const MenuWhitItems = ({ title,link, menuItems = [] }) => {
     const itemsToRender = menuItems.length > 0 ? menuItems : defaultItems;
 
     return (
-        <Menu open={openMenu} handler={setOpenMenu} allowHover>
+        <Menu open={openMenu} handler={setOpenMenu} allowHover className=" shadow-lg">
             <MenuHandler>
-                <Button variant="text" className="flex items-center gap-1 text-base font-bold capitalize">
+                <Button variant="text" className="flex items-center gap-1 text-base font-bold capitalize shadow-sm">
                     {title}
                     <span className={`transition-transform ${openMenu ? 'rotate-180' : ''}`}>▼</span>
                 </Button>

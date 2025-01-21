@@ -42,8 +42,8 @@ const ProductCardGenerator: React.FC = () => {
             productCode: product.codigo_producto,
             productName: product.nombre_producto,
             productDescription: product.descripcion_producto,
-            productPrice: parseInt(product.precio_producto, 10),
-            productStock: parseInt(product.stock_producto, 10),
+            productPrice: (product.precio_producto),
+            productStock: (product.stock_producto),
             categories: product.categorias, 
             brand: product.marca, 
             imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
@@ -170,9 +170,21 @@ const ProductCardGenerator: React.FC = () => {
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="animate-pulse text-xl">Cargando...</div>
+              <ProductCard
+                  key={1}
+                  name="limon trolo"
+                  price={40}
+                  brand="marca trolos"
+                  category=" categoria mega trolo"
+                  imageUrl=""
+                  rating={4}
+                  soldCount={14}
+                  stock={300}
+                />
             </div>
           ) : (
             <>
+              
               <div className="flex flex-wrap gap-8 items-center justify-center">
                 {paginate(filteredProducts).map((product) => (
                   <ProductCard
@@ -189,7 +201,9 @@ const ProductCardGenerator: React.FC = () => {
                     stock={product.productStock}
                   />
                 ))}
+                
               </div>
+              
               <div className="mt-8 flex justify-center">
                 <DefaultPagination
                   currentPage={currentPage}
