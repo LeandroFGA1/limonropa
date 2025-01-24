@@ -43,7 +43,7 @@ export function CartModal() {
 
   const handleConfirm = () => {
     handleClose();
-    navigate("/checkOut", { state: { cartItems } });
+    navigate("/checkOut");
   };
 
   return (
@@ -90,7 +90,7 @@ export function CartModal() {
                     className="flex sm:justify-between items-center py-2 bg-main2/40 rounded-md flex-wrap sm:flex-nowrap gap-2"
                   >
                     <img src={item.image1} alt="" className="w-10 h-10" />
-                    <span className="w-[150px] md:w-[250px] overflow-hidden">{item.name}</span>
+                    <span className="w-[150px] md:w-[250px] overflow-hidden">{item.name.replace(/_/g, ' ')}</span>
                     <div className="flex items-center gap-2 w-[110px] overflow-hidden">
                       <Button
                         size="sm"
@@ -100,7 +100,7 @@ export function CartModal() {
                       >
                         -
                       </Button>
-                      <span className="w-[30px]">{item.quantity}</span>
+                      <span className="w-[30px] flex items-center justify-center">{item.quantity}</span>
                       <Button
                         size="sm"
                         onClick={() =>

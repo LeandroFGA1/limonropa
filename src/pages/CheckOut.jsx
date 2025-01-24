@@ -6,6 +6,7 @@ import StepOne from "../components/checkout/StepOne";
 import StepTwo from "../components/checkout/StepTwo";
 import StepThree from "../components/checkout/StepThree";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { setRegions } from '../store/chileSlice';
 const CheckOut = () => {
   const location = useLocation();
@@ -83,9 +84,15 @@ const CheckOut = () => {
         </Button>
         <Button 
           onClick={handleNext} 
-          disabled={isLastStep || !totalAmount || totalAmount === 0}
+          disabled={ !totalAmount || totalAmount === 0}
         >
-          Siguiente
+          {activeStep ===2?(
+          <Link to={"/"}>
+            <Button className='p-0'>Regresar al inicio</Button>
+          </Link>
+          ):(
+            <div>Siguiente</div>
+          )}
         </Button>
 
       </div>
@@ -133,12 +140,13 @@ const CheckOut = () => {
             </div>
           </Step>
           <Step onClick={() => setActiveStep(2)} className="relative">
-            <div className="hidden sm:block md:hidden w-max text-center absolute top-[40px]">
+            <div className="hidden sm:block md:hidden xl:block w-max text-center absolute top-[40px]">
               <Typography
                 variant="h6"
                 color={activeStep === 2 ? "blue-gray" : "gray"}
               >
-                Gracias por Comprar
+                
+                {activeStep === 2?"Regresar al inicio":"Gracias por Comprar"}
               </Typography>
             </div>
           </Step>

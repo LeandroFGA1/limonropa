@@ -123,7 +123,7 @@ const ProductCardGenerator: React.FC = () => {
   return (
     <div className="container mx-auto px-1 sm:px-4 py-8">
       <div className="flex flex-wrap gap-8">
-        <div className="w-full lg:w-1/4 lg:ml-4 mb-8 lg:mb-0">
+        <div className="w-full  mb-8 ">
           <h3 className="text-xl font-bold mb-4">Filtros</h3>
           
           
@@ -170,7 +170,7 @@ const ProductCardGenerator: React.FC = () => {
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="animate-pulse text-xl">Cargando...</div>
-              <ProductCard
+              {/* <ProductCard
                   key={1}
                   name="limon trolo"
                   price={40}
@@ -180,7 +180,7 @@ const ProductCardGenerator: React.FC = () => {
                   rating={4}
                   soldCount={14}
                   stock={300}
-                />
+                /> */}
             </div>
           ) : (
             <>

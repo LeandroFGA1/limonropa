@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { setTotalAmount } from "../../store/cartSlice";
 
-const StepOne = ({ cartItems }) => {
+const StepOne = () => {
   const dispatch = useDispatch();
-
+  const cartItems = useSelector((state) => state.cart.items);
+  
   const total = Math.round(
     cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
   );
@@ -32,10 +33,10 @@ const StepOne = ({ cartItems }) => {
                 key={item.name}
                 className="flex justify-between py-2 flex-wrap sm:flex-nowrap gap-2 bg-main2/40 rounded-md"
               >
-                <span className="w-[200px] overflow-hidden">{item.name}</span>
+                <span className="w-[200px] overflow-hidden">{item.name.replace(/_/g, ' ')}</span>
                 <span className="w-[50px] overflow-hidden">{item.quantity}</span>
                 <span className="w-[100px] overflow-hidden">
-                  ${item.quantity * item.price.toLocaleString("es-CL")}
+                  ${item.quantity * item.price}
                 </span>
               </li>
             ))}
