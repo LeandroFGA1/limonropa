@@ -25,7 +25,7 @@ const ProductCardGenerator: React.FC = () => {
     brand: "",
   });
   const [isLoading, setIsLoading] = useState(true);
-  const itemsPerPage = 20;
+  const itemsPerPage = 5;
   const [categoryCounts, setCategoryCounts] = useState<Map<string, number>>(new Map());
   const [brandCounts, setBrandCounts] = useState<Map<string, number>>(new Map());
 
@@ -44,12 +44,13 @@ const ProductCardGenerator: React.FC = () => {
             productDescription: product.descripcion_producto,
             productPrice: (product.precio_producto),
             productStock: (product.stock_producto),
-            categories: product.categorias, 
-            brand: product.marca, 
+            categories: product.categorias_nombres, 
+            brand: product.marca_nombre,
             imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
           }));
           allProducts = allProducts.concat(fetchedProducts);
           nextPageUrl = response.data.next;
+          console.log(allProducts)
         } catch (error) {
           console.error("Error fetching products:", error);
           nextPageUrl = ""; 
@@ -136,7 +137,7 @@ const ProductCardGenerator: React.FC = () => {
                 className="text-blue-500 p-1 bg-main2/20 rounded"
                 onClick={() => handleCategoryChange(category)}
               >
-                {`Categoría ${category} `}
+                {` ${category.replace(/_/g, ' ')} `}
               </button>
             ))}
             </div>
@@ -153,7 +154,7 @@ const ProductCardGenerator: React.FC = () => {
                 className="text-blue-500 bg-main3/20 p-1 rounded"
                 onClick={() => handleBrandChange(brand)}
               >
-                {`Marca ${brand}`}
+                {` ${brand.replace(/_/g, ' ')}`}
               </button>
             ))}
             </div>

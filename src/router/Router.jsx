@@ -7,6 +7,7 @@ import CheckOut from '../pages/CheckOut';
 import Access from '../pages/Access';
 import AboutUs from '../pages/AboutUs';
 import Profile from '../pages/Profile';
+import Contact from '../pages/Contact';
 const Router = () => {
     const location = useLocation();
 
@@ -23,6 +24,7 @@ const Router = () => {
             <Route path='/access' element={<Access />} />
             <Route path='/aboutUs' element={<AboutUs />} />
             <Route path='/access/Profile' element={<Profile/>}/>
+            <Route path="/contact" element={<Contact/>}/>
         </Routes>
     );
 }

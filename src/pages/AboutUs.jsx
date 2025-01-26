@@ -62,7 +62,7 @@ const AboutUs = () => {
           <div className={`absolute left-[5%] w-[90%] h-[60%] z-10 top-[20%] sm:top-[25%] sm:left-[1%] rounded-lg sm:w-[50%] md:w-[40%] sm:h-[65%] md:h-[60%] transition-all sm:gap-10 duration-500 bg-white/90 sm:bg-white/30 flex flex-col items-center justify-between sm:justify-center
             ${visibleSections["mision"]?" opacity-100":" opacity-0 -translate-x-10 "}
             `}>
-              <h2 className="vision-title text-3xl lg:text-5xl font-bold">misión</h2>
+              <h2 className="vision-title text-3xl lg:text-5xl font-bold capitalize">misión</h2>
               <p className="vision-text w-[96%] text-center text-lg lg:text-xl xl:text-2xl">
               Nuestra misión se centra en construir valor circular y sustentable junto a nuestros clientes con el fin alargar la vida útil de los desechos textiles, recuperar o reciclar mediante procesos que preservan el medioambiente mediante la mitigación de los efectos adversos de los desechos textiles.
             </p>

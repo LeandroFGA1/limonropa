@@ -142,7 +142,7 @@ export function CartModal() {
           <Button variant="text" color="red" onClick={handleClose}>
             Volver
           </Button>
-          <Button variant="gradient" color="green" onClick={handleConfirm}>
+          <Button variant="gradient" color="green" onClick={handleConfirm} disabled={cartItems.length === 0 ? true : false}>
             Proceder al Checkout
           </Button>
         </DialogFooter>

@@ -42,7 +42,7 @@ const Home = () => {
     }, [dispatch]);
 
     return (
-        <>
+        <div>
             <div className='h-[calc(100vh-100px)]'>
                 <CarouselBanner />
             </div>
@@ -59,7 +59,7 @@ const Home = () => {
                 <OtherBanner />
                 <VideoPrueba />
             </div>
-        </>
+        </div>
     );
 };
 
