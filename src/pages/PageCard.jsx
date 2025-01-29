@@ -25,6 +25,7 @@ const PageCard = () => {
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
+    setAddedItem(false);
     dispatch(updateProductQuantity({ name: product.name, quantity: newQuantity }));
   }
 

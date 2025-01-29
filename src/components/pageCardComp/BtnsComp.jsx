@@ -3,10 +3,11 @@ import { Button } from '@material-tailwind/react'
 import directory from '../../assets/imgs/directory'
 import { Link } from 'react-router-dom'
 const BtnsComp = ({ added, setAdded, onAddCartChange }) => {
-
+    const [test,setSets] = useState(true);
     const AddCart = () => {
         onAddCartChange(true);
         setAdded(true);
+        setSets(false)
     }
     return (
         <div className='flex gap-4 justify-start items-center px-[10%] flex-wrap xl:justify-center  w-full' >
@@ -19,7 +20,7 @@ const BtnsComp = ({ added, setAdded, onAddCartChange }) => {
             <Link to={"/checkout"}>
                 <Button 
                     className='bg-green-500 border border-black' 
-                    disabled={!added}>ir al carrito
+                    disabled={test}>ir al carrito
                 </Button>
             </Link>
             
