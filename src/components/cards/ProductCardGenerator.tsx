@@ -180,7 +180,7 @@ const ProductCardGenerator: React.FC = () => {
           {isLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="animate-pulse text-xl">Cargando...</div>
-              <ProductCard
+              {/* <ProductCard
                   key={1}
                   name="limon australiano"
                   price={40}
@@ -190,7 +190,7 @@ const ProductCardGenerator: React.FC = () => {
                   rating={4}
                   soldCount={14}
                   stock={300}
-                />
+                /> */}
             </div>
           ) : (
             <>
