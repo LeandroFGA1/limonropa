@@ -25,7 +25,7 @@ const ProductCardGenerator: React.FC = () => {
     brand: "",
   });
   const [isLoading, setIsLoading] = useState(true);
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
   const [categoryCounts, setCategoryCounts] = useState<Map<string, number>>(new Map());
   const [brandCounts, setBrandCounts] = useState<Map<string, number>>(new Map());
 
@@ -49,6 +49,15 @@ const ProductCardGenerator: React.FC = () => {
             imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
           }));
           allProducts = allProducts.concat(fetchedProducts);
+
+          const maxItems = 30;
+          allProducts = allProducts.slice(0, maxItems);
+
+          if (allProducts.length >= maxItems) {
+              break; 
+          }
+
+
           nextPageUrl = response.data.next;
           console.log(allProducts)
         } catch (error) {

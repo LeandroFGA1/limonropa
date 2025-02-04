@@ -23,7 +23,7 @@ const StepThree = () => {
       <div className="mt-4 p-4 bg-gray-100 rounded-md">
         <pre className="text-sm text-gray-700 overflow-auto max-w-full whitespace-pre-wrap break-words">
           {`Productos: 
-${items.map((item) => `${item.name.replace(/_/g, ' ')} (Cantidad: ${item.quantity}) - $${(item.price * item.quantity).toFixed(2)}`).join('\n')}
+${items.map((item) => `${item.name.replace(/_/g, ' ')} (Cantidad: ${item.quantity}) - $${(item.price * item.quantity)}`).join('\n')}
 
 Precio Total: $${totalAmount}
 

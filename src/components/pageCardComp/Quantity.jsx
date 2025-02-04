@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Button } from '@material-tailwind/react';
 
 const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }) => {
-    
-    const maxOrder = 10;
+    const [maxOrder, setMaxOrder] = useState(20); // Usar estado para maxOrder
     const currentStock = productStock - quantity; 
-    const totalPrice = productPrice * quantity;
+    let totalPrice = productPrice * quantity;
 
     const handleQuantityChange = (action) => {
         const newQuantity = quantity + action;
@@ -17,18 +16,19 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
             alert("Todo agotado");
             return; 
         }
-        if(quantity=== maxOrder && action === 1){
-            alert("No puedes comprar mas de 10 productos");
-            return
+        if (quantity === maxOrder && action === 1) {
+            alert("Estas haciendo una compra grande, puede que sea mas conveniente contactar con el vendedor por un mejor precio");
+            setMaxOrder(maxOrder + 10); // Actualizar maxOrder usando setMaxOrder
+            return;
         }
 
         onQuantityChange(newQuantity);
     };
 
     return (
-        <div className=" flex gap-4 flex-wrap items-center justify-start w-full  px-[10%]  ">
+        <div className="flex gap-4 flex-wrap items-center justify-start w-full px-[10%]">
             <span className="text-xl">unidades</span>
-            <div className="cantidad flex flex-row items-center ">
+            <div className="cantidad flex flex-row items-center">
                 <Button
                     className="p-3 hover:bg-white group transition-all rounded-lg"
                     onClick={() => handleQuantityChange(-1)}
@@ -45,8 +45,8 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
                     <div className="h-[3px] bg-white w-5 group-hover:bg-black rotate-90 -translate-y-[2px]"></div>
                 </Button>
             </div>
-            <div className='  w-full xl:w-fit'>
-                <span className="text-xl font-bold">Total: <strong className='text-2xl font-semibold'>${totalPrice}</strong> </span>
+            <div className='w-full xl:w-fit'>
+                <span className="text-xl font-bold">Total: <strong className='text-2xl font-semibold'>${totalPrice}</strong></span>
                 <span className="ml-4"> disponible: {currentStock}</span>
             </div>
         </div>

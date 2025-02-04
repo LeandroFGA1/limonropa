@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { useDispatch,useSelector } from "react-redux";
 import { setTotalAmount } from "../../store/cartSlice";
+import RegisterForm from "../forms/RegisterForm";
 
 const StepOne = () => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { setOrder } from '../../store/orderSlice';
 import { BASE_URL } from '../../App';
 import axios from "axios";
-const StepTwo = ({regions}) => {
+const StepTwo = ({regions,disableTwoStep, setDisableTwoStep}) => {
   const isLoggedIn = useSelector((state) => !!state.auth.accessToken);
   const dispatch = useDispatch();
   const [showGuestForm, setShowGuestForm] = useState(false);
@@ -14,7 +14,6 @@ const StepTwo = ({regions}) => {
   const [paymentMethod, setPaymentMethod] = useState(isLoggedIn ? "efectivo" : "");
   const [trackingNumber, setTrackingNumber] = useState(isLoggedIn ? `T#${Math.floor(Math.random() * 100000) + 50000}` : "");
   const [orderCode, setOrderCode] = useState(null);
-  
   const [guestData, setGuestData] = useState({
     primer_nombre: "",
     segundo_nombre: "",
@@ -68,6 +67,7 @@ const StepTwo = ({regions}) => {
   const handleGuestSubmit = async (e) => {
     e.preventDefault();
     const filteredData = applyFiltersToGuestData();
+    setDisableTwoStep(false);
   
     if (!filteredData.direccion) {
       filteredData.direccion = "calle falsa 123";
@@ -280,52 +280,29 @@ const handleRegionChange = (e) => {
 </select>
 
 
-                <input
-                  type="text"
-                  name="direccion"
-                  placeholder="Dirección"
-                  value={guestData.direccion}
-                  onChange={handleInputChange}
-                  className="p-2 border rounded"
-                  required
+              <input type="text" name="direccion" placeholder="Dirección" value={guestData.direccion} onChange={handleInputChange} className="p-2 border rounded"
+              required
+              />
+              <input type="email" name="email" placeholder="Correo" value={guestData.email} onChange={handleInputChange} className="p-2 border rounded" required
+              />
+              <div className="mt-4">
+                <Typography variant="subtitle2">Selecciona un método de pago:</Typography>
+                <Radio id="cash" name="payment" value="cash" label="Efectivo" onChange={() => setPaymentMethod("cash")}
                 />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Correo"
-                  value={guestData.email}
-                  onChange={handleInputChange}
-                  className="p-2 border rounded"
-                  required
+                <Radio id="bank-transfer" name="payment" value="bank-transfer" label="Transferencia Bancaria" onChange={() => setPaymentMethod("bank-transfer")}
                 />
-                <div className="mt-4">
-                  <Typography variant="subtitle2">Selecciona un método de pago:</Typography>
-                  <Radio
-                    id="cash"
-                    name="payment"
-                    value="cash"
-                    label="Efectivo"
-                    onChange={() => setPaymentMethod("cash")}
-                  />
-                  <Radio
-                    id="bank-transfer"
-                    name="payment"
-                    value="bank-transfer"
-                    label="Transferencia Bancaria"
-                    onChange={() => setPaymentMethod("bank-transfer")}
-                  />
-                </div>
-                <Button type="submit" variant="gradient" color="blue">
-                  Enviar
-                </Button>
-              </form>
-            )
-          )}
-          {orderCode && (
-            <Typography variant="h6" className="mt-4 text-green-500">
-              ¡Código de pedido generado: Lo veras mas adelante!
-            </Typography>
-          )}
+              </div>
+              <Button type="submit" variant="gradient" color="blue">
+                Enviar
+              </Button>
+            </form>
+        )
+      )}
+      {orderCode && (
+        <Typography variant="h6" className="mt-4 text-green-500">
+          ¡Código de pedido generado: Lo veras mas adelante!
+        </Typography>
+      )}
         </div>
       )}
     </div>

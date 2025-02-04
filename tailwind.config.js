@@ -19,7 +19,7 @@ module.exports = withMT({
       
       colors: {
         "main": "#adccb7",
-        "main2": "#ccc0ad",
+        "main2": "#f9f6eb",
         "main3": "#776549",
         "bg-body": "#faf5ef",
       },

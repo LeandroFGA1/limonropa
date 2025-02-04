@@ -16,14 +16,17 @@ const Header = () => {
         {
             title: 'Categorias',
             description: 'Explore the latest in AI advancements.',
+            link:"/store/categories",
         },
         {
             title: 'Productos',
             description: 'Discover secure and decentralized solutions.',
+            link:"/store",
         },
         {
             title: 'Marcas',
             description: 'Learn about scalable and efficient services.',
+            link:"/store/brands",
         },
     ];
 
@@ -31,14 +34,17 @@ const Header = () => {
         {
             title: 'Sobre Nosotros',
             description: 'Build amazing user interfaces.',
+            link:"/aboutUs",
         },
         {
             title: 'Servicios',
             description: 'Power your applications with robust APIs.',
+            link:"/services",
         },
         {
             title: 'Lorem lorem',
             description: 'lorem nostubres.',
+            link:"",
         },
     ];
 
@@ -86,8 +92,8 @@ const Header = () => {
                                 <Button className=' text-black bg-main2 hover:bg-main text-base backdrop-blur'>Inicio</Button>
                             </Link> */}
                             
-                            <MenuWhitItems title="Tienda" link="/store" menuItems={technologyMenuItems} />
-                            <MenuWhitItems title="Sobre Nosotros" link="/aboutUs" menuItems={developmentMenuItems} />
+                            <MenuWhitItems title="Tienda" linkP="/store" menuItems={technologyMenuItems} />
+                            <MenuWhitItems title="Sobre Nosotros" linkP="/aboutUs" menuItems={developmentMenuItems} />
                         </div>
                     </div>
 

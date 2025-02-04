@@ -10,7 +10,7 @@ import {
 } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 
-const MenuWhitItems = ({ title,link, menuItems = [] }) => {
+const MenuWhitItems = ({ title,linkP, menuItems = [] }) => {
     const [openMenu, setOpenMenu] = useState(false);
 
     const defaultItems = [
@@ -31,7 +31,7 @@ const MenuWhitItems = ({ title,link, menuItems = [] }) => {
             </MenuHandler>
             <MenuList className="grid grid-cols-7 gap-3 lg:grid">
                 <Card color="gray" shadow={false} className="col-span-3 flex h-full w-full items-center justify-center rounded-2xl p-4">
-                <Link to={link} className='w-full h-full'>
+                <Link to={linkP} className='w-full h-full'>
                 <div className="h-full w-full flex items-center justify-center group overflow-hidden relative">
                     
                     <div className="absolute inset-0 bg-main rounded-md transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-right group-hover:origin-left"></div>
@@ -49,9 +49,10 @@ const MenuWhitItems = ({ title,link, menuItems = [] }) => {
                 </Link>
                 </Card>
                 <ul className="col-span-4 flex flex-col gap-1 bottom-0">
-                    {itemsToRender.map(({ title, description }, index) => (
+                    {itemsToRender.map(({ title, description,link }, index) => (
                         <li key={index}>
-                            <MenuItem disabled>
+                            <Link to={link}>
+                            <MenuItem disabled={link === ""}>
                                 <Typography variant="h6" color="blue-gray" className="mb-1">
                                     {title}
                                 </Typography>
@@ -59,6 +60,8 @@ const MenuWhitItems = ({ title,link, menuItems = [] }) => {
                                     {description}
                                 </Typography>
                             </MenuItem>
+                            </Link>
+                            
                         </li>
                     ))}
                 </ul>

@@ -8,12 +8,14 @@ import StepThree from "../components/checkout/StepThree";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { setRegions } from '../store/chileSlice';
+import { resetCart } from '../store/cartSlice';
 const CheckOut = () => {
   const location = useLocation();
   const cartItems = location.state?.cartItems || [];
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
   const [isFirstStep, setIsFirstStep] = React.useState(false);
+  const [disableTwoStep, setDisableTwoStep] =useState(true);
   const regions = useSelector((state) => state.chile.regions); 
   const dispatch = useDispatch();
 
@@ -55,7 +57,6 @@ const CheckOut = () => {
           
           dispatch(setRegions(allRegions));
         } catch (error) {
-          alert('Error al obtener las regiones, consultar con soporte');
         }
       };
 
@@ -67,7 +68,7 @@ const CheckOut = () => {
     <div className="w-full min-h-[70vh] h-fit overflow-hidden flex flex-col justify-between px-8 py-4 ">
       <div className="flex-grow">
         {activeStep === 0 && <StepOne cartItems={cartItems} />}
-        {activeStep === 1 && <StepTwo regions={regions} />}
+        {activeStep === 1 && <StepTwo regions={regions} disableTwoStep={disableTwoStep} setDisableTwoStep={setDisableTwoStep} />}
         {activeStep === 2 && <StepThree 
           paymentMethod={paymentMethod} 
           totalAmount={totalAmount} 
@@ -83,17 +84,24 @@ const CheckOut = () => {
           Atrás
         </Button>
         <Button 
-          onClick={handleNext} 
-          disabled={ !totalAmount || totalAmount === 0}
+          onClick={() => {
+            if (activeStep === 2) {
+              dispatch(resetCart());
+            } else {
+              handleNext();
+            }
+          }}
+          disabled={!totalAmount || totalAmount === 0|| activeStep ===1 && disableTwoStep}
         >
-          {activeStep ===2?(
-          <Link to={"/"}>
-            <Button className='p-0'>Regresar al inicio</Button>
-          </Link>
-          ):(
+          {activeStep === 2 ? (
+            <Link to={"/"}>
+              <Button className="p-0">Regresar al inicio</Button>
+            </Link>
+          ) : (
             <div>Siguiente</div>
           )}
         </Button>
+
 
       </div>
 

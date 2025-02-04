@@ -9,12 +9,11 @@ const Profile = () => {
     const dispatch = useDispatch();
     const email = useSelector((state) => state.auth.email);
     const userProfiles = useSelector((state) => state.profile.userProfiles);
-    const initialAvatar = email ? userProfiles[email.toLowerCase()] : null; // Avatar inicial
+    const initialAvatar = email ? userProfiles[email.toLowerCase()] : null;
     const [selectedAvatar, setSelectedAvatar] = useState(initialAvatar);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [changed, setChanged] = useState(false);
 
-    // Actualiza el índice seleccionado al cargar el componente
     useEffect(() => {
         if (initialAvatar) {
             const avatarIndex = avatarOptions.findIndex(avatar => avatar.id === initialAvatar);
@@ -23,11 +22,11 @@ const Profile = () => {
     }, [initialAvatar]);
 
     const avatarOptions = [
-        { src: directory.avatarCat, id: "avatarCat", alt: 'imagen de perfil gato', color: "bg-pink-200" },
-        { src: directory.avatarDog, id: "avatarDog", alt: 'imagen de perfil de perro', color: "bg-blue-400" },
-        { src: directory.avatarLion, id: "avatarLion", alt: 'imagen de perfil de leon', color: "bg-purple-400 " },
-        { src: directory.avatarPig, id: "avatarPig", alt: 'imagen de perfil de cerdo', color: "bg-pink-400" },
-        { src: directory.avatarMonkey, id: "avatarMonkey", alt: 'imagen de perfil de mono', color: "bg-green-600" },
+        { src: directory.avatarCat, id: "avatarCat", alt: 'imagen de perfil gato' },
+        { src: directory.avatarDog, id: "avatarDog", alt: 'imagen de perfil de perro' },
+        { src: directory.avatarLion, id: "avatarLion", alt: 'imagen de perfil de leon' },
+        { src: directory.avatarPig, id: "avatarPig", alt: 'imagen de perfil de cerdo'},
+        { src: directory.avatarMonkey, id: "avatarMonkey", alt: 'imagen de perfil de mono' },
     ];
 
     const handleAvatarClick = (index, value) => {
@@ -55,7 +54,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="h-[calc(100vh-100px)] w-[90%] overflow-hidden flex justify-center items-center flex-col gap-10">
+        <div className="min-h-[calc(100vh-100px)] h-fit w-[90%] overflow-hidden flex justify-center items-center flex-col gap-10">
             <h2 className="text-center font-bold text-2xl pb-10">
                 ¡Elije tu avatar, lo puedes cambiar cuando quieras!
             </h2>
@@ -64,7 +63,7 @@ const Profile = () => {
             {initialAvatar && (
                 <div className="flex flex-col items-center mb-10">
                     <h3 className="font-semibold text-xl mb-4">Tu imagen de perfil actual:</h3>
-                    <div className="w-[100px] h-[100px] rounded-full border-[4px] border-blue-500 flex items-center justify-center">
+                    <div className="w-[100px] h-[100px] rounded-full border-[4px] bg-blue-500 flex items-center justify-center">
                         {avatarOptions.find(avatar => avatar.id === initialAvatar)?.src ? (
                             <img
                                 src={avatarOptions.find(avatar => avatar.id === initialAvatar).src}
@@ -80,9 +79,9 @@ const Profile = () => {
             
 
             {/* Opciones de avatares */}
-            <ul className="flex items-center justify-center flex-row flex-wrap gap-6 bg-main2/20">
+            <ul className="flex items-center justify-center flex-row flex-wrap gap-6 bg-main2/40 p-5 rounded-md">
                 {avatarOptions
-                    .filter(avatar => avatar.id !== initialAvatar) // Filtra para no mostrar el avatar actual
+                    .filter(avatar => avatar.id !== initialAvatar) 
                     .map((avatar, index) => (
                         <li
                             key={index + 1}
@@ -92,11 +91,7 @@ const Profile = () => {
                             onClick={() => handleAvatarClick(index + 1, avatar.id)}
                         >
                             <div
-                                className={`w-[100px] h-[100px] hover:${avatar.color} ${
-                                    avatar.color === "bg-blue-400" ? "hover:bg-blue-400" : ""
-                                } ${
-                                    avatar.color === "bg-green-600" ? "hover:bg-green-600" : ""
-                                } rounded-full p-2 group-hover:-rotate-45 transition-all`}
+                                className={`w-[100px] h-[100px]  rounded-full p-2 group-hover:-rotate-45 transition-all`}
                             >
                                 <img
                                     src={avatar.src}

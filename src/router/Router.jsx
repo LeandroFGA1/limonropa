@@ -8,6 +8,8 @@ import Access from '../pages/Access';
 import AboutUs from '../pages/AboutUs';
 import Profile from '../pages/Profile';
 import Contact from '../pages/Contact';
+import MarkertCategories from '../pages/MarkertCategories';
+import MarketBrands from '../pages/MarkertBrands';
 const Router = () => {
     const location = useLocation();
 
@@ -19,11 +21,13 @@ const Router = () => {
         <Routes>
             <Route path='/' index element={<Home />} />
             <Route path='/store' element={<Markert />} />
+            <Route path='/store/categories' element={<MarkertCategories/>}/>
+            <Route path='/store/brands' element={<MarketBrands/>}/>
             <Route path='/product/:name' element={<PageCard />} />
             <Route path='/checkOut' element={<CheckOut />} />
             <Route path='/access' element={<Access />} />
             <Route path='/aboutUs' element={<AboutUs />} />
-            <Route path='/access/Profile' element={<Profile/>}/>
+            <Route path='/access/profile' element={<Profile/>}/>
             <Route path="/contact" element={<Contact/>}/>
         </Routes>
     );

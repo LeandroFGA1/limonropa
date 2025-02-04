@@ -52,7 +52,7 @@ export function CartModal() {
       {cartCount > 0 && (
         <Badge
           content={cartCount > 4 ? "4+" : cartCount}
-          className={`transition-transform ${isBouncing ? "animate-bounce" : ""}`}
+          className={` translate-y-[1px] translate-x-2 transition-transform ${isBouncing ? "animate-bounce" : ""}`}
         >
           <Button
             size="sm"

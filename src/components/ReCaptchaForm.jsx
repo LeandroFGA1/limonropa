@@ -294,6 +294,7 @@ const handleLogin = async () => {
                     placeholder="Contraseña"
                     value={formData.password}
                     onChange={handleInputChange}
+                    minLength={10}
                     className="p-2 border rounded"
                     required
                 />
@@ -304,6 +305,7 @@ const handleLogin = async () => {
                         placeholder="Confirmar Contraseña"
                         value={formData.password_confirm}
                         onChange={handleInputChange}
+                        minLength={10}
                         className="p-2 border rounded"
                         required
                     />

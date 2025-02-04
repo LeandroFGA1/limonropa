@@ -58,7 +58,7 @@ const NavProfileMenu = () => {
                         <Avatar
                         variant="circular"
                         alt="Perfil"
-                        className="cursor-pointer hover:bg-gray-200 transition-all"
+                        className="cursor-pointer hover:bg-gray-200 bg-main2/50 transition-all"
                         src={
                             directory[selectedAvatar] ||
                             directory.userDef // Fallback si no encuentra el avatar
