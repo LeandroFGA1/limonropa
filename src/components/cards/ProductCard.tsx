@@ -12,6 +12,7 @@ interface ProductCardProps {
   rating: number;
   soldCount: number;
   stock: number;
+  description: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -23,6 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   category,
   imageUrl,
   stock,
+  description,
   rating,
   soldCount,
 }) => {
@@ -45,6 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="p-4">
         <h4 className="text-base font-semibold text-gray-800 mb-2 line-clamp-2">{formatText(category)}</h4>
         <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">{formatText(name)}</h3>
+        
         <div className="flex items-baseline mb-2">
           <span className="text-2xl font-bold text-gray-900">${price}</span>
           {originalPrice && (
@@ -55,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       
         <Link
           to={`/product/${name}`}
-          state={{ product: { name, price, originalPrice, discount, brand, category,image1: imageUrl,stock  } }}
+          state={{ product: { name, price, originalPrice, discount, brand, category,image1: imageUrl,stock,description  } }}
           className="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
         >
           Ver en tienda

@@ -1,0 +1,152 @@
+[
+    {
+        "codigo_producto": "101",
+        "nombre_producto": "nombre_producto_test_1",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 990,
+        "stock_producto": 100,
+        "marca": 1,
+        "marca_nombre": "marca_test_1",
+        "categorias": [
+            1
+        ],
+        "categorias_nombres": [
+            "categoria_test_1"
+        ]
+    },
+    {
+        "codigo_producto": "102",
+        "nombre_producto": "nombre_producto_test_2",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 9990,
+        "stock_producto": 250,
+        "marca": 1,
+        "marca_nombre": "marca_test_1",
+        "categorias": [
+            1
+        ],
+        "categorias_nombres": [
+            "categoria_test_1"
+        ]
+    },
+    {
+        "codigo_producto": "103",
+        "nombre_producto": "nombre_producto_test_3",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 14990,
+        "stock_producto": 400,
+        "marca": 2,
+        "marca_nombre": "marca_test_2",
+        "categorias": [
+            2
+        ],
+        "categorias_nombres": [
+            "categoria_test_2"
+        ]
+    },
+    {
+        "codigo_producto": "104",
+        "nombre_producto": "nombre_producto_test_4",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 20000,
+        "stock_producto": 55,
+        "marca": 2,
+        "marca_nombre": "marca_test_2",
+        "categorias": [
+            2
+        ],
+        "categorias_nombres": [
+            "categoria_test_2"
+        ]
+    },
+    {
+        "codigo_producto": "105",
+        "nombre_producto": "nombre_producto_test_5",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 39990,
+        "stock_producto": 70,
+        "marca": 3,
+        "marca_nombre": "marca_test_3",
+        "categorias": [
+            3
+        ],
+        "categorias_nombres": [
+            "categoria_test_3"
+        ]
+    },
+    {
+        "codigo_producto": "106",
+        "nombre_producto": "nombre_producto_test_6",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 45000,
+        "stock_producto": 85,
+        "marca": 3,
+        "marca_nombre": "marca_test_3",
+        "categorias": [
+            3
+        ],
+        "categorias_nombres": [
+            "categoria_test_3"
+        ]
+    },
+    {
+        "codigo_producto": "107",
+        "nombre_producto": "nombre_producto_test_7",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 59990,
+        "stock_producto": 92,
+        "marca": 4,
+        "marca_nombre": "marca_test_4",
+        "categorias": [
+            4
+        ],
+        "categorias_nombres": [
+            "categoria_test_4"
+        ]
+    },
+    {
+        "codigo_producto": "108",
+        "nombre_producto": "nombre_producto_test_8",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 69000,
+        "stock_producto": 115,
+        "marca": 4,
+        "marca_nombre": "marca_test_4",
+        "categorias": [
+            4
+        ],
+        "categorias_nombres": [
+            "categoria_test_4"
+        ]
+    },
+    {
+        "codigo_producto": "109",
+        "nombre_producto": "nombre_producto_test_9",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 72000,
+        "stock_producto": 130,
+        "marca": 5,
+        "marca_nombre": "marca_test_5",
+        "categorias": [
+            5
+        ],
+        "categorias_nombres": [
+            "categoria_test_5"
+        ]
+    },
+    {
+        "codigo_producto": "110",
+        "nombre_producto": "nombre_producto_test_10",
+        "descripcion_producto": "soy una descripción de prueba para este producto",
+        "precio_producto": 100000,
+        "stock_producto": 145,
+        "marca": 5,
+        "marca_nombre": "marca_test_5",
+        "categorias": [
+            5
+        ],
+        "categorias_nombres": [
+            "categoria_test_5"
+        ]
+    }
+]

@@ -7,7 +7,7 @@ import authReducer from "./authSlice";
 import chileReducer from "./chileSlice"
 import orderReducer from "./orderSlice";
 import { profileReducer } from "./profileSlice";
-// storage.removeItem("persist:root");
+// // storage.removeItem("persist:root");
 
   // const savedProfile = storage.getItem("persist:profile");
   if (import.meta.env.MODE === "development" && !sessionStorage.getItem("storageCleared")) {

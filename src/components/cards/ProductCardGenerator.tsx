@@ -209,6 +209,7 @@ const ProductCardGenerator: React.FC = () => {
                     rating={Math.ceil(Math.random() * 5) + 1}
                     soldCount={Math.floor(Math.random() * 5000)}
                     stock={product.productStock}
+                    description={product.productDescription}
                   />
                 ))}
                 

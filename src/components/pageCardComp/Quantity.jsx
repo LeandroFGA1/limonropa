@@ -28,7 +28,7 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
     return (
         <div className="flex gap-4 flex-wrap items-center justify-start w-full px-[10%]">
             <span className="text-xl">unidades</span>
-            <div className="cantidad flex flex-row items-center">
+            <div className="cantidad flex flex-row items-center" >
                 <Button
                     className="p-3 hover:bg-white group transition-all rounded-lg"
                     onClick={() => handleQuantityChange(-1)}
@@ -40,6 +40,8 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
                 <Button
                     className="p-3 hover:bg-white group transition-all rounded-lg"
                     onClick={() => handleQuantityChange(1)}
+                    disabled={quantity===10}
+                    
                 >
                     <div className="h-[3px] bg-white w-5 group-hover:bg-black"></div>
                     <div className="h-[3px] bg-white w-5 group-hover:bg-black rotate-90 -translate-y-[2px]"></div>

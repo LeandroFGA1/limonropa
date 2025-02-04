@@ -6,7 +6,7 @@ const BtnsComp = ({ added, setAdded, onAddCartChange }) => {
     const [test,setSets] = useState(true);
     const AddCart = () => {
         onAddCartChange(true);
-        // setAdded(true);
+        // // setAdded(true);
         setSets(false)
     }
     return (

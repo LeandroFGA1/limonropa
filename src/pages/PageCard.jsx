@@ -32,17 +32,28 @@ const PageCard = () => {
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
-    // setAddedItem(false);
+    setAddedItem(false);
     dispatch(updateProductQuantity({ name: product.name, quantity: newQuantity }));
   };
 
   const handleAddCart = (newAdded) => {
     setAddedItem(newAdded);
+    
     if (newAdded) {
       const productToAdd = { ...product, quantity };
-      dispatch(addToCart(productToAdd));
+  
+      
+      const existingItem = cartItems.find(item => item.name === product.name);
+      
+      if (existingItem) {
+        
+        dispatch(updateProductQuantity({ name: product.name, quantity }));
+      } else {
+        dispatch(addToCart(productToAdd));
+      }
     }
   };
+  
 
   const getDivColor = () => {
     if (showStock === 0) return "bg-gray-500 p-1";
@@ -64,6 +75,7 @@ const PageCard = () => {
         <div className='min-h-[calc(100vh-100px)] h-fit w-[100%] lg:w-[50%] flex flex-wrap flex-col lg:justify-between lg:py-10 '>
           <div className="header-page px-[10%] w-full">
             <h1 className='text-xl uppercase line-clamp-3'>{productName}</h1>
+            <span className='text-sm uppercase line-clamp-2'>{product.description}</span>
             <span className='text-sm'>costo por unidad: ${product.price}</span>
           </div>
           <div className='divisor lg:border-t-[2px] rounded lg:w-[90%] lg:mx-[5%] '></div>
