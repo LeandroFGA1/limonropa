@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@material-tailwind/react";
-import { addToCart, updateProductQuantity, removeFromCart, resetCart } from '../store/cartSlice';
+import { addToCart, updateProductQuantity } from '../store/cartSlice';
 import { useDispatch, useSelector } from "react-redux";
 import directory from '../assets/imgs/directory';
 import HeroProduct from '../components/pageCardComp/HeroProduct';
@@ -16,48 +16,41 @@ const PageCard = () => {
   const [quantity, setQuantity] = useState(1);
   const [addedItem, setAddedItem] = useState(false);
   const [showStock, setShowStock] = useState(product?.stock);
+  const [tooltipVisible, setTooltipVisible] = useState(false); // Estado para controlar el tooltip
   const initialStock = product?.stock || 0;
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const itemInCart = cartItems.find(item => item.name === product?.name);
-    if (itemInCart) {
-      setQuantity(itemInCart.quantity);
-      setShowStock(initialStock - itemInCart.quantity);
-      setAddedItem(true);
-    } else {
+    if (!itemInCart) {
       setQuantity(1);
       setShowStock(initialStock);
       setAddedItem(false);
+      setTooltipVisible(false); // Ocultar tooltip si no está en el carrito
     }
   }, [cartItems, initialStock, product?.name]);
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
+    setAddedItem(false);
+    setTooltipVisible(false); // Ocultar tooltip al cambiar la cantidad
   };
 
-  const handleAddCart = () => {
-    if (!product) return;
+  const handleAddCart = (newAdded) => {
+    if (newAdded) {
+      const existingItem = cartItems.find(item => item.name === product.name);
+      const newTotalQuantity = (existingItem?.quantity || 0) + quantity;
+      const quantityToAdd = newTotalQuantity > 10 ? 10 - (existingItem?.quantity || 0) : quantity;
 
-    const existingItem = cartItems.find(item => item.name === product.name);
-    const totalQuantity = existingItem ? existingItem.quantity + quantity : quantity;
-
-    if (totalQuantity > 10) {
-      alert("No puedes agregar más de 10 unidades por producto.");
-      return;
+      if (quantityToAdd > 0) {
+        const productToAdd = { ...product, quantity: quantityToAdd };
+        dispatch(addToCart(productToAdd));
+        setAddedItem(true);
+      } else {
+        setTooltipVisible(true); // Mostrar tooltip si no se puede agregar más de 10
+      }
     }
-
-    const productToAdd = { ...product, quantity: totalQuantity };
-
-    if (existingItem) {
-      dispatch(updateProductQuantity({ name: product.name, quantity: totalQuantity }));
-    } else {
-      dispatch(addToCart(productToAdd));
-    }
-
-    setShowStock(initialStock - totalQuantity);
-    setAddedItem(true);
   };
 
   const getDivColor = () => {
@@ -98,6 +91,12 @@ const PageCard = () => {
             setAdded={setAddedItem}
             onAddCartChange={handleAddCart}
           />
+          {/* Tooltip */}
+          {tooltipVisible && (
+            <div className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] bg-red-500 text-white py-2 px-4 rounded">
+              ¡Has alcanzado el límite de 10 unidades  en este producto!
+            </div>
+          )}
         </div>
       </div>
     </div>
