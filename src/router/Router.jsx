@@ -30,6 +30,7 @@ const Router = () => {
             <Route path='/aboutUs' element={<AboutUs />} />
             <Route path='/access/profile' element={<Profile/>}/>
             <Route path="/contact" element={<Contact/>}/>
+            
             <Route path='/services' element={<Services/>}/>
         </Routes>
     );

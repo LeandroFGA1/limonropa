@@ -42,9 +42,9 @@ const Header = () => {
             link:"/services",
         },
         {
-            title: 'Lorem lorem',
+            title: 'Contacto',
             description: 'lorem nostubres.',
-            link:"",
+            link:"/contact",
         },
     ];
 
