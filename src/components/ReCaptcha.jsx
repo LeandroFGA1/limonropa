@@ -26,14 +26,14 @@ const ReCaptcha = ({ onVerify }) => {
             onClick={handleReCaptcha}
             type="button"
             className={`px-4 py-2 rounded mt-4 flex items-center justify-center ${
-            loading ? "bg-gray-400" : "bg-blue-500 text-white hover:bg-blue-600 transition"
+                loading ? "bg-gray-400" : "bg-blue-500 text-white hover:bg-blue-600 transition"
             }`}
             disabled={loading || captchaToken}
-        >
+            >
             {loading ? (
-            <Spinner className="w-5 h-5" />
+                <Spinner className="w-5 h-5" />
             ) : (
-            captchaToken ? "Verificación completada" : "Verificar reCAPTCHA"
+                captchaToken ? "Verificación completada" : "Verificar reCAPTCHA"
             )}
         </button>
         {captchaToken && (

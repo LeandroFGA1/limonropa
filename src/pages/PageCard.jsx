@@ -21,39 +21,44 @@ const PageCard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Detecta si el producto fue eliminado o si el carrito fue reseteado
     const itemInCart = cartItems.find(item => item.name === product?.name);
-    if (!itemInCart) {
-      setQuantity(1); // Restablecer la cantidad a 1
-      setShowStock(initialStock); // Restaurar el stock inicial
+    if (itemInCart) {
+      setQuantity(itemInCart.quantity);
+      setShowStock(initialStock - itemInCart.quantity);
+      setAddedItem(true);
+    } else {
+      setQuantity(1);
+      setShowStock(initialStock);
       setAddedItem(false);
     }
   }, [cartItems, initialStock, product?.name]);
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
-    setAddedItem(false);
-    dispatch(updateProductQuantity({ name: product.name, quantity: newQuantity }));
   };
 
-  const handleAddCart = (newAdded) => {
-    setAddedItem(newAdded);
-    
-    if (newAdded) {
-      const productToAdd = { ...product, quantity };
-  
-      
-      const existingItem = cartItems.find(item => item.name === product.name);
-      
-      if (existingItem) {
-        
-        dispatch(updateProductQuantity({ name: product.name, quantity }));
-      } else {
-        dispatch(addToCart(productToAdd));
-      }
+  const handleAddCart = () => {
+    if (!product) return;
+
+    const existingItem = cartItems.find(item => item.name === product.name);
+    const totalQuantity = existingItem ? existingItem.quantity + quantity : quantity;
+
+    if (totalQuantity > 10) {
+      alert("No puedes agregar más de 10 unidades por producto.");
+      return;
     }
+
+    const productToAdd = { ...product, quantity: totalQuantity };
+
+    if (existingItem) {
+      dispatch(updateProductQuantity({ name: product.name, quantity: totalQuantity }));
+    } else {
+      dispatch(addToCart(productToAdd));
+    }
+
+    setShowStock(initialStock - totalQuantity);
+    setAddedItem(true);
   };
-  
 
   const getDivColor = () => {
     if (showStock === 0) return "bg-gray-500 p-1";
