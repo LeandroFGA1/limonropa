@@ -18,7 +18,7 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
         }
         if (quantity === maxOrder && action === 1) {
             alert("Estas haciendo una compra grande, puede que sea mas conveniente contactar con el vendedor por un mejor precio");
-            // setMaxOrder(maxOrder + 10); // Actualizar maxOrder usando setMaxOrder
+            
             return;
         }
 

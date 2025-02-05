@@ -16,7 +16,7 @@ const PageCard = () => {
   const [quantity, setQuantity] = useState(1);
   const [addedItem, setAddedItem] = useState(false);
   const [showStock, setShowStock] = useState(product?.stock);
-  const [tooltipVisible, setTooltipVisible] = useState(false); // Estado para controlar el tooltip
+  const [tooltipVisible, setTooltipVisible] = useState(false);
   const initialStock = product?.stock || 0;
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
@@ -27,14 +27,14 @@ const PageCard = () => {
       setQuantity(1);
       setShowStock(initialStock);
       setAddedItem(false);
-      setTooltipVisible(false); // Ocultar tooltip si no está en el carrito
+      setTooltipVisible(false); 
     }
   }, [cartItems, initialStock, product?.name]);
 
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
     setAddedItem(false);
-    setTooltipVisible(false); // Ocultar tooltip al cambiar la cantidad
+    setTooltipVisible(false); 
   };
 
   const handleAddCart = (newAdded) => {
@@ -48,7 +48,7 @@ const PageCard = () => {
         dispatch(addToCart(productToAdd));
         setAddedItem(true);
       } else {
-        setTooltipVisible(true); // Mostrar tooltip si no se puede agregar más de 10
+        setTooltipVisible(true); 
       }
     }
   };
@@ -91,7 +91,7 @@ const PageCard = () => {
             setAdded={setAddedItem}
             onAddCartChange={handleAddCart}
           />
-          {/* Tooltip */}
+          
           {tooltipVisible && (
             <div className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] bg-red-500 text-white py-2 px-4 rounded">
               ¡Has alcanzado el límite de 10 unidades  en este producto!
