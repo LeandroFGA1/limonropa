@@ -13,7 +13,7 @@ const BtnsComp = ({ added, setAdded, onAddCartChange }) => {
         <div className='flex gap-4 justify-start items-center px-[10%] flex-wrap xl:justify-center  w-full' >
             <Button className={`bg-green-500 border border-black flex items-center justify-center gap-2 group 
                 ${!added?"":""}`} onClick={AddCart}
-                disabled={added}>
+            >
                 {!added?"agregar al carrito":"producto ya agregado"}
                 <img src={directory.cart} alt="carrito de compra " className='h-5 group-hover:animate-hithere' />
             </Button>
