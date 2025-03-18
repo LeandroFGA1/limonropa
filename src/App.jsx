@@ -6,11 +6,8 @@ import MainLayout from './layout/MainLayout';
 import Router from './router/Router';
 import store, { persistor } from './store/store';
 
-// export const BASE_URL = "https://ecosustentable.azurewebsites.net/";
-export const BASE_URL = import.meta.env.MODE === "development"
-  ? "http://localhost:8000/"  // Para desarrollo con Vite
-  : "/"; // En producción, se manejará internamente con Nginx
 
+const BASE_URL = "http://127.0.0.1:8000";
 
 const App = () => {
   return (
