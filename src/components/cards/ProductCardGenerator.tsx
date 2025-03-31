@@ -3,9 +3,10 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import { DefaultPagination } from "./DefaultPagination";
 import ExternalDirectory from "../../assets/imgs/ExternalDirectory";
+import directory from "../../assets/imgs/directory";
 import { BASE_URL } from "../../App";
 const imageKeys = Object.keys(ExternalDirectory);
-
+const imageProduct = Object.keys(directory);
 interface Product {
   productCode: string;
   productName: string;
@@ -46,12 +47,13 @@ const ProductCardGenerator: React.FC = () => {
             productStock: (product.stock_producto),
             categories: product.categorias_nombres, 
             brand: product.marca_nombre,
-            imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
+            // imageUrl: ExternalDirectory[imageKeys[index % imageKeys.length] as keyof typeof ExternalDirectory],
+            imageUrl: directory[""+[product.codigo_producto] as keyof typeof directory],
           }));
           allProducts = allProducts.concat(fetchedProducts);
 
-          const maxItems = 30;
-          allProducts = allProducts.slice(0, maxItems);
+          const maxItems = 130;
+          allProducts = allProducts.slice(5, maxItems);//por alguna razon corta el doble, si hay un 2, corta 4. creo que es por que react siempre carga 2 veces
 
           if (allProducts.length >= maxItems) {
               break; 
@@ -198,7 +200,7 @@ const ProductCardGenerator: React.FC = () => {
               <div className="flex flex-wrap gap-8 items-center justify-center">
                 {paginate(filteredProducts).map((product) => (
                   <ProductCard
-                    key={product.productCode}
+                    id={product.productCode}
                     name={product.productName}
                     price={product.productPrice}
                     originalPrice={undefined}

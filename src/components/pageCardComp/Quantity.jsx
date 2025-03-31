@@ -49,7 +49,14 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
             </div>
             <div className='w-full xl:w-fit'>
                 <span className="text-xl font-bold">Total: <strong className='text-2xl font-semibold'>${totalPrice}</strong></span>
-                <span className="ml-4">  {currentStock>10?"disponible":"agotado"}</span>
+                <span className="ml-4">
+                    {currentStock > 10
+                        ? "disponible"
+                        : currentStock === 0
+                        ? "última unidad"
+                        : "agotado"}
+                </span>
+
             </div>
         </div>
     );

@@ -9,6 +9,7 @@ import VideoPrueba from '../components/VideoPrueba';
 import { useDispatch } from 'react-redux';
 import { setRegions } from '../store/chileSlice';
 import { BASE_URL } from '../App';
+import BannerECO from '../components/banners/BannerECO';
 
 const Home = () => {
 
@@ -46,7 +47,9 @@ const Home = () => {
             <div className='h-[calc(100vh-100px)]'>
                 <CarouselBanner />
             </div>
-
+            <div>
+                <BannerECO/>
+            </div>
             <div className='h-[75vh] sm:h-[60vh] flex items-center justify-center'>
                 <Info />
             </div>
@@ -54,7 +57,7 @@ const Home = () => {
                 <h2 className='font-extrabold text-2xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
                 <CardCategoryGenerator />
             </div>
-            <div>
+            <div className='w-full overflow-hidden'>
                 <UnderlineTabs />
                 <OtherBanner />
                 <VideoPrueba />

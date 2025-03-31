@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { useDispatch,useSelector } from "react-redux";
 import { setTotalAmount } from "../../store/cartSlice";
-import RegisterForm from "../forms/RegisterForm";
 
 const StepOne = () => {
   const dispatch = useDispatch();
@@ -36,6 +35,7 @@ const StepOne = () => {
               >
                 <span className="w-[200px] overflow-hidden">{item.name.replace(/_/g, ' ')}</span>
                 <span className="w-[50px] overflow-hidden">{item.quantity}</span>
+                <span>owowwww{item.key}owooooooooooo</span>
                 <span className="w-[100px] overflow-hidden">
                   ${item.quantity * item.price}
                 </span>

@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Markert from '../pages/Markert';
 import PageCard from '../pages/PageCard';
 import CheckOut from '../pages/CheckOut';
+import CheckOutNew from '../pages/CheckOutNew';
 import Access from '../pages/Access';
 import AboutUs from '../pages/AboutUs';
 import Profile from '../pages/Profile';
@@ -25,7 +26,7 @@ const Router = () => {
             <Route path='/store/categories' element={<MarkertCategories/>}/>
             <Route path='/store/brands' element={<MarketBrands/>}/>
             <Route path='/product/:name' element={<PageCard />} />
-            <Route path='/checkOut' element={<CheckOut />} />
+            <Route path='/checkOut' element={<CheckOutNew />} />
             <Route path='/access' element={<Access />} />
             <Route path='/aboutUs' element={<AboutUs />} />
             <Route path='/access/profile' element={<Profile/>}/>

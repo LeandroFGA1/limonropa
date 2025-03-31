@@ -29,6 +29,19 @@ import avatarLion from "./avatarLion.svg"
 import avatarMonkey from "./avatarMonkey.svg"
 import avatarPig from "./avatarPig.svg"
 import scrollToB from "./scroll-to-b.svg"
+import product1 from "./products/1.jpg"
+import product2 from "./products/2.jpg"
+import product3 from "./products/3.jpg"
+import product4 from "./products/4.jpg"
+import product5 from "./products/5.jpg"
+import product6 from "./products/6.jpg"
+import product7 from "./products/7.jpg"
+import product8 from "./products/8.jpg"
+import product9 from "./products/9.jpg"
+import product10 from "./products/10.jpg"
+import product11 from "./products/11.jpg"
+import product12 from "./products/12.jpg"
+
 
 export default {
     "card-bank":credit,
@@ -61,6 +74,18 @@ export default {
     "avatarLion":avatarLion,
     "avatarMonkey":avatarMonkey,
     "avatarPig":avatarPig,
-    "scrollToB":scrollToB
+    "scrollToB":scrollToB,
+    "PROD001":product1,
+    "PROD002":product2,
+    "PROD003":product3,
+    "PROD004":product4,
+    "PROD005":product5,
+    "PROD006":product6,
+    "PROD007":product7,
+    "PROD008":product8,
+    "PROD009":product9,
+    "PROD010":product10,
+    "PROD011":product11,
+    "PROD012":product12,
 
 }

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import StepOne from "../components/checkout/StepOne";
 import StepTwo from "../components/checkout/StepTwo";
 import StepThree from "../components/checkout/StepThree";
+import StepTwoNew from '../components/checkout/StepTwoNew';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { setRegions } from '../store/chileSlice';

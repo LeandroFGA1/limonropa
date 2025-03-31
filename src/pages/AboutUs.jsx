@@ -1,11 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import directory from '../assets/imgs/directory';
-
+import { Card, CardBody, Button } from "@material-tailwind/react";
+import { useLocation } from 'react-router-dom';
 const AboutUs = () => {
   const liRefs = useRef([]); // Referencias de los <li>
   const [visibleItems, setVisibleItems] = useState({});
   const sectionsRef = useRef([]); // Referencias de las secciones
   const [visibleSections, setVisibleSections] = useState({}); // Estado para manejar la visibilidad
+  
+
+// Dentro del componente AboutUs
+const location = useLocation();
+useEffect(() => {
+  if(location.hash === "#nuestro-plan"){
+    const element = document.getElementById("nuestro-plan");
+    if(element) element.scrollIntoView({ behavior: "smooth" });
+  }
+}, [location]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -156,6 +167,47 @@ const AboutUs = () => {
             </li>
           </ul>
         </div>
+      </section>
+      <section 
+        id='nuestro-plan'
+        ref={(el) => (sectionsRef.current[3] = el)}
+      >
+        <Card className=" shadow-lg p-6 text-center w-[90%] mx-auto bg-main2/30 ">
+          <CardBody>
+            <ul className='text-base sm:text-lg lg:text-xl xl:text-2xl flex items-center flex-col justify-between gap-10'>
+              <li className='flex flex-col items-center justify-center gap-5'>
+                <h2 id='nuestro-plan-1' ref={(el) => (liRefs.current[4] = el)} className={`nuestro-plan-1 w-[90%] font-semibold text-3xl transition-all duration-500${visibleItems[`nuestro-plan-1`] ? " opacity-100" : " translate-y-5 translate-x-5 opacity-0"
+              }`}>Queremos que el planeta tenga futuro</h2>
+                <p id='nuestro-plan-2' ref={(el) => (liRefs.current[5] = el)} className={`nuestro-plan-2 transition-all duration-500 ${
+                visibleItems[`nuestro-plan-2`] ? " opacity-100" : " -translate-x-5 translate-y-5 opacity-0"
+              }`}>Para reutilizar al máximo los recursos residuales</p>
+                <p id='nuestro-plan-3' ref={(el) => (liRefs.current[6] = el)} className={`nuestro-plan-1 transition-all duration-500${visibleItems[`nuestro-plan-3`] ? " opacity-100" : " translate-y-5 translate-x-5 opacity-0"
+              }`}>Hacemos realidad la Economía Circular</p>
+                <p id='nuestro-plan-4' ref={(el) => (liRefs.current[7] = el)} className={`nuestro-plan-2 transition-all duration-500 ${
+                visibleItems[`nuestro-plan-4`] ? " opacity-100" : " -translate-x-5 translate-y-5 opacity-0"
+              }`}>
+                  La principal tarea de la Economía Circular es producir a partir de residuos nuevas materias primas que vuelvan al círculo de la productividad. En Resiter cada año convertimos y transformamos más de 800 mil toneladas de residuos sólidos, permitiendo a las empresas contribuir a un planeta más sustentable y optimizar su modelo productivo. Hoy los residuos ya no son un problema, ahora son activos capaces de generar ganancias.
+                </p>
+              </li>
+              <li className='flex flex-col items-center justify-center gap-5'>
+                <h3 id='nuestro-plan-5' ref={(el) => (liRefs.current[8] = el)} className={`nuestro-plan-1 w-[90%] font-semibold text-3xl transition-all duration-500${visibleItems[`nuestro-plan-5`] ? " opacity-100" : " translate-y-5 translate-x-5 opacity-0"
+              }`}>¿En qué consiste la Gestión Integral de Residuos?</h3>
+                <p id='nuestro-plan-6' ref={(el) => (liRefs.current[9] = el)} className={`nuestro-plan-2 transition-all duration-500 ${
+                visibleItems[`nuestro-plan-6`] ? " opacity-100" : " -translate-x-5 translate-y-5 opacity-0"
+              }`}>
+                  Los residuos, tanto sólidos como líquidos, son una preocupación para las empresas comprometidas con el medio ambiente. Resiter diseña planes de manejo adaptados a cada industria, combinando experiencia profesional y tecnología avanzada para lograr una óptima segregación en origen, recolección, acondicionamiento y traslado de residuos para su reutilización y revalorización.
+                </p>
+                <h3 id='nuestro-plan-7' ref={(el) => (liRefs.current[10] = el)} className={`nuestro-plan-1 font-semibold text-3xl transition-all duration-500${visibleItems[`nuestro-plan-7`] ? " opacity-100" : " translate-y-5 translate-x-5 opacity-0"
+              }`}>Servicio de transporte de residuos</h3>
+                <p id='nuestro-plan-8' ref={(el) => (liRefs.current[11] = el)} className={`nuestro-plan-2 transition-all duration-500 ${
+                visibleItems[`nuestro-plan-8`] ? " opacity-100" : " -translate-x-5 translate-y-5 opacity-0"
+              }`}>
+                  Resiter transporta residuos asimilables a domésticos y orgánicos generados por sus clientes industriales y comerciales. Contamos con una amplia variedad de tecnologías y equipos para implementar soluciones eficientes y seguras, adaptadas a cada tipo de residuo y su logística. Todos nuestros camiones cuentan con Resolución Sanitaria y tecnología de monitoreo digital (GPS) para un control total del servicio.
+                </p>
+              </li>
+            </ul>
+        </CardBody>
+      </Card>
       </section>
     </div>
   );

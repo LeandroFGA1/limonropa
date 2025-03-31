@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { setOrder } from '../../store/orderSlice';
 import { BASE_URL } from '../../App';
 import axios from "axios";
+
+
 const StepTwo = ({regions,disableTwoStep, setDisableTwoStep}) => {
   const isLoggedIn = useSelector((state) => !!state.auth.accessToken);
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ const StepTwo = ({regions,disableTwoStep, setDisableTwoStep}) => {
   const [paymentMethod, setPaymentMethod] = useState(isLoggedIn ? "efectivo" : "");
   const [trackingNumber, setTrackingNumber] = useState(isLoggedIn ? `T#${Math.floor(Math.random() * 100000) + 50000}` : "");
   const [orderCode, setOrderCode] = useState(null);
+  
   const [guestData, setGuestData] = useState({
     primer_nombre: "",
     segundo_nombre: "",
