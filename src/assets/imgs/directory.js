@@ -29,6 +29,9 @@ import avatarLion from "./avatarLion.svg"
 import avatarMonkey from "./avatarMonkey.svg"
 import avatarPig from "./avatarPig.svg"
 import scrollToB from "./scroll-to-b.svg"
+import chatIcon from "./chatIcon.svg"
+import instagramIcon from "./instagramIcon.png"
+import whatsappIcon from "./whatsappIcon.png"
 import product1 from "./products/1.jpg"
 import product2 from "./products/2.jpg"
 import product3 from "./products/3.jpg"
@@ -75,6 +78,9 @@ export default {
     "avatarMonkey":avatarMonkey,
     "avatarPig":avatarPig,
     "scrollToB":scrollToB,
+    "chatIcon":chatIcon,
+    "instagramIcon":instagramIcon,
+    "whatsappIcon":whatsappIcon,
     "PROD001":product1,
     "PROD002":product2,
     "PROD003":product3,

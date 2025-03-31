@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="text-blue-600 text-sm font-semibold mb-2">Marca: {formattedBrand}</p>
         
         {/* ID visible para pruebas */}
-        <span className="text-xs text-gray-500">ID: {id}</span>
+        {/* <span className="text-xs text-gray-500">ID: {id}</span> */}
 
         <Link
           to={`/product/${name}`} // Se usa ID en la URL en vez del nombre
