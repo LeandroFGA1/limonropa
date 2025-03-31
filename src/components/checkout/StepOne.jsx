@@ -35,7 +35,7 @@ const StepOne = () => {
               >
                 <span className="w-[200px] overflow-hidden">{item.name.replace(/_/g, ' ')}</span>
                 <span className="w-[50px] overflow-hidden">{item.quantity}</span>
-                <span>owowwww{item.key}owooooooooooo</span>
+                
                 <span className="w-[100px] overflow-hidden">
                   ${item.quantity * item.price}
                 </span>
