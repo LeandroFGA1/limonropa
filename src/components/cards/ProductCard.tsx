@@ -35,7 +35,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const formattedCategory = useMemo(() => category.replace(/_/g, " "), [category]);
   const formattedName = useMemo(() => name.replace(/_/g, " "), [name]);
   const formattedBrand = useMemo(() => brand.replace(/_/g, " "), [brand]);
-
   return (
     <div className="bg-main2/20 rounded-lg shadow-md overflow-hidden min-w-[280px] max-w-sm mx-auto hover:shadow-lg transition-shadow duration-300">
       <div className="relative">
