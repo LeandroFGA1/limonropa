@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import directory from '../../assets/imgs/directory'
 import { Button } from '@material-tailwind/react'
 
-const HeroProduct = () => {
+const HeroProduct = ({productID}) => {
     const [bugSolution,SetBugSolution] = useState(false);
     const handleScroll = () => {
         if(bugSolution){
@@ -31,9 +31,9 @@ const HeroProduct = () => {
                     {product.brand}
                 </Link>
             </div>
-            <img src={directory.card5} alt={`ìmagen del producto ${product.name}`}  
+            <img src={directory[productID]} alt={`ìmagen del producto ${product.name}`}  
             className='h-full w-full blur-sm' />
-            <img src={directory.card5} alt={`ìmagen del producto ${product.name}`}  
+            <img src={directory[productID]} alt={`ìmagen del producto ${product.name}`}  
             className=' absolute top-0 left-[10%] h-full w-[80%] object-cover sm:w-[50%] sm:left-[25%] border-2 border-black/20 ' />
             
             <button type='button' name='button-scroll' className=' absolute hover:shadow-md rounded-lg h-[40px] text-white active:bg-green-500/80 bottom-[4%] flex gap-2 w-[80%] left-[10%] sm:w-[50%] sm:left-[25%] bg-green-500 border-black  lg:hidden border items-center justify-center' onClick={handleScroll}>

@@ -69,7 +69,7 @@ const PageCard = () => {
   return (
     <div className='bg-main2'>
       <div className='h-full w-full flex flex-col lg:flex-row flex-wrap overflow-hidden'>
-        <HeroProduct />
+        <HeroProduct productID={product.id} />
         <div className='min-h-[calc(100vh-100px)] h-fit w-[100%] lg:w-[50%] flex flex-wrap flex-col lg:justify-between lg:py-10 '>
           <div className="header-page px-[10%] w-full">
             <h1 className='text-xl uppercase line-clamp-3'>{productName}</h1>
