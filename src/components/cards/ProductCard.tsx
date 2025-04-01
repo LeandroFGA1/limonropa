@@ -35,6 +35,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const formattedCategory = useMemo(() => category.replace(/_/g, " "), [category]);
   const formattedName = useMemo(() => name.replace(/_/g, " "), [name]);
   const formattedBrand = useMemo(() => brand.replace(/_/g, " "), [brand]);
+  const sanitizedName = useMemo(() => name.replace(/\//g, " "), [name]);
+
   return (
     <div className="bg-main2/20 rounded-lg shadow-md overflow-hidden min-w-[280px] max-w-sm mx-auto hover:shadow-lg transition-shadow duration-300">
       <div className="relative">
@@ -67,13 +69,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {/* <span className="text-xs text-gray-500">ID: {id}</span> */}
 
         <Link
-          to={`/product/${name}`} // Se usa ID en la URL en vez del nombre
-          state={{ product: { name, price, originalPrice, discount, brand, category,image1: imageUrl,stock,description,id  } }}
+          to={`/product/${sanitizedName}`}
+          state={{ product: { name, price, originalPrice, discount, brand, category, image1: imageUrl, stock, description, id } }}
           className="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
           aria-label={`Ver detalles de ${formattedName}`}
         >
           Ver en tienda
         </Link>
+
       </div>
     </div>
   );
