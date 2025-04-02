@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useMemo } from 'react';
 import { BASE_URL } from '../App';
 import axios from 'axios';
 import ProductCard from '../components/cards/ProductCard';
 import { Button } from '@material-tailwind/react';
+import directory from '../assets/imgs/directory';
 
 const MarkertCategories = () => {
     const [categories, setCategories] = useState([]);
@@ -22,7 +23,10 @@ const MarkertCategories = () => {
 
                     const maxItems = 30;
                     allProducts = allProducts.slice(0, maxItems);
-
+                    allProducts = allProducts.map(product => ({
+                        ...product,
+                        imageUrl: directory[String(product.codigo_producto)]
+                      }));
                     if (allProducts.length >= maxItems) {
                         break;
                     }
@@ -33,13 +37,18 @@ const MarkertCategories = () => {
                     nextPageUrl = null;
                 }
             }
+            
+              
 
             const categoryCount = {};
             allProducts.forEach(product => {
                 product.categorias_nombres.forEach(categoryName => {
+                    if (categoryName.toLowerCase().includes("test")) return;
                     categoryCount[categoryName] = (categoryCount[categoryName] || 0) + 1;
                 });
             });
+            
+            
 
             const formattedCategories = Object.entries(categoryCount)
                 .map(([name, count]) => ({

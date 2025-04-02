@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useMemo } from 'react';
 import { BASE_URL } from '../App';
 import axios from 'axios';
 import ProductCard from '../components/cards/ProductCard';
+import directory from '../assets/imgs/directory';
+
 import { Button } from '@material-tailwind/react';
 
 const MarketBrands = () => {
@@ -23,6 +25,10 @@ const MarketBrands = () => {
 
                     const maxItems = 30;
                     allProducts = allProducts.slice(0, maxItems);
+                    allProducts = allProducts.map(product => ({
+                    ...product,
+                    imageUrl: directory[String(product.codigo_producto)]
+                    }));
 
                     if (allProducts.length >= maxItems) {
                         break;
@@ -34,12 +40,18 @@ const MarketBrands = () => {
                     nextPageUrl = null;
                 }
             }
-
+            allProducts = allProducts.map(product => ({
+                ...product,
+                imageUrl: directory[String(product.codigo_producto)]
+              }));
+              
             const brandCount = {};
             allProducts.forEach(product => {
-                const brandName = product.marca_nombre;
-                brandCount[brandName] = (brandCount[brandName] || 0) + 1;
+            const brandName = product.marca_nombre;
+            if (brandName.toLowerCase().includes("test")) return;
+            brandCount[brandName] = (brandCount[brandName] || 0) + 1;
             });
+
 
             const formattedBrands = Object.entries(brandCount)
                 .map(([name, count]) => ({
