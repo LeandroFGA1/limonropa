@@ -74,7 +74,10 @@ const PageCard = () => {
           <div className="header-page px-[10%] w-full">
             <h1 className='text-xl uppercase line-clamp-3'>{productName}</h1>
             <span className='text-sm uppercase line-clamp-2'>{product.description}</span>
-            <span className='text-sm'>costo por unidad: ${product.price}</span>
+            <span className="text-sm">
+              costo por unidad: ${Number(product.price).toLocaleString('de-DE')}
+            </span>
+
           </div>
           <div className='divisor lg:border-t-[2px] rounded lg:w-[90%] lg:mx-[5%] '></div>
           <Size />

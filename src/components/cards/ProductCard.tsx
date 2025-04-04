@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">{formattedName}</h3>
 
         <div className="flex items-baseline mb-2">
-          <span className="text-2xl font-bold text-gray-900">${price}</span>
+          <span className="text-2xl font-bold text-gray-900">${Number(price).toLocaleString('de-DE')}</span>
           {originalPrice && (
             <span className="ml-2 text-sm text-gray-500 line-through">${originalPrice}</span>
           )}

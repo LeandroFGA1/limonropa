@@ -48,7 +48,7 @@ const QuantityComp = ({ productStock, productPrice, quantity, onQuantityChange }
                 </Button>
             </div>
             <div className='w-full xl:w-fit'>
-                <span className="text-xl font-bold">Total: <strong className='text-2xl font-semibold'>${totalPrice}</strong></span>
+                <span className="text-xl font-bold">Total: <strong className='text-2xl font-semibold'>${Number(totalPrice).toLocaleString('de-DE')}</strong></span>
                 <span className="ml-4">
                     {currentStock > 10
                         ? "disponible"
