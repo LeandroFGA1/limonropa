@@ -24,11 +24,16 @@ const persistConfig = {
 };
 
 const asyncDispatchMiddleware = (store) => (next) => (action) => {
-  if (typeof action.asyncDispatch === "function") {
+  if (
+    typeof action === "object" &&
+    action !== null &&
+    typeof action.asyncDispatch === "function"
+  ) {
     action.asyncDispatch = store.dispatch;
   }
   return next(action);
 };
+
 
 const rootReducer = combineReducers({
   cart: cartReducer,

@@ -9,6 +9,7 @@ const imageKeys = Object.keys(ExternalDirectory);
 const imageProduct = Object.keys(directory);
 interface Product {
   productCode: string;
+  productID: number;
   productName: string;
   productDescription: string;
   productPrice: number;
@@ -42,6 +43,7 @@ const ProductCardGenerator: React.FC = () => {
           const fetchedProducts: Product[] = response.data.results.map((product: any, index: number) => ({
             productCode: product.codigo_producto,
             productName: product.nombre_producto,
+            productID: product.id,
             productDescription: product.descripcion_producto,
             productPrice: (product.precio_producto),
             productStock: (product.stock_producto),
@@ -61,7 +63,6 @@ const ProductCardGenerator: React.FC = () => {
 
 
           nextPageUrl = response.data.next;
-          console.log(allProducts)
         } catch (error) {
           console.error("Error fetching products:", error);
           nextPageUrl = ""; 
@@ -201,6 +202,7 @@ const ProductCardGenerator: React.FC = () => {
                 {paginate(filteredProducts).map((product) => (
                   <ProductCard
                     id={product.productCode}
+                    productID={product.productID}
                     name={product.productName}
                     price={product.productPrice}
                     originalPrice={undefined}

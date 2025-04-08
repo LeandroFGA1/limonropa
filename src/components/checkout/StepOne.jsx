@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Typography } from "@material-tailwind/react";
 import { useDispatch,useSelector } from "react-redux";
 import { setTotalAmount } from "../../store/cartSlice";
@@ -6,15 +6,17 @@ import { setTotalAmount } from "../../store/cartSlice";
 const StepOne = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
-  
+  const lastDispatchedTotal = useRef(null);
   const total = Math.round(
     cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
   );
 
   useEffect(() => {
-    dispatch(setTotalAmount(total));
-  }, [cartItems, dispatch, total]);
-
+    if (lastDispatchedTotal.current !== total) {
+      dispatch(setTotalAmount(total));
+      lastDispatchedTotal.current = total;
+    }
+  }, [total, dispatch]);
   return (
     <div>
       <Typography variant="h5">Productos</Typography>

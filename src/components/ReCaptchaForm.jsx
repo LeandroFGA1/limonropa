@@ -7,6 +7,8 @@ import { loginSuccess } from '../store/authSlice';
 import { BASE_URL } from '../App';
 import { setCommunes } from '../store/chileSlice';
 const ReCaptchaForm = ({ regions }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
     const [isRegister, setIsRegister] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
     const [captchaToken, setCaptchaToken] = useState(null);
@@ -288,27 +290,47 @@ const handleLogin = async () => {
                     className="p-2 border rounded"
                     required
                 />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Contraseña"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    minLength={10}
-                    className="p-2 border rounded"
-                    required
-                />
-                {isRegister && (
+                <div className="relative">
                     <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Contraseña"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        minLength={10}
+                        className="p-2 border rounded w-full pr-20"
+                        required
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-blue-600 hover:underline"
+                    >
+                        {showPassword ? "Ocultar" : "Ver"}
+                    </button>
+                </div>
+
+                {isRegister && (
+                    <div className="relative">
+                        <input
+                        type={showPasswordConfirm ? "text" : "password"}
                         name="password_confirm"
                         placeholder="Confirmar Contraseña"
                         value={formData.password_confirm}
                         onChange={handleInputChange}
                         minLength={10}
-                        className="p-2 border rounded"
+                        className="p-2 border rounded w-full pr-20"
                         required
-                    />
+                        />
+                        <button
+                        type="button"
+                        onClick={() => setShowPasswordConfirm((prev) => !prev)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-blue-600 hover:underline"
+                        >
+                        {showPasswordConfirm ? "Ocultar" : "Ver"}
+                        </button>
+                    </div>
+                  
                 )}
                 <div className="flex flex-col items-center">
                 {isLogin ? (

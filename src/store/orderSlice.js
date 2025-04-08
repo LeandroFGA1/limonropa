@@ -1,36 +1,23 @@
-// src/store/orderSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-// Definir el estado inicial
 const initialState = {
-    nombre: '',
-    id: '',
-    direccion: '',
-    tracking_number: '', // Esto es el orderCode
-    fecha_creacion: '',
-    pago: ""
+  pedido: null,       // contiene lo que retorna /api/pedidos/
+  guestData: null     // contiene los datos del formulario del invitado
 };
 
-// Crear el slice
 const orderSlice = createSlice({
-    name: 'order',
-    initialState,
-    reducers: {
-        setOrder: (state, action) => {
-            const { nombre, id, direccion, tracking_number, fecha_creacion, pago } = action.payload;
-            state.nombre = nombre;
-            state.id = id;
-            state.direccion = direccion;
-            state.tracking_number = tracking_number;  // Aquí es donde se asigna el tracking_number
-            state.fecha_creacion = fecha_creacion;
-            state.pago = pago;
-        },
-        resetOrder: () => initialState
-    }
+  name: 'order',
+  initialState,
+  reducers: {
+    setOrder: (state, action) => {
+      state.pedido = action.payload;
+    },
+    setGuestData: (state, action) => {
+      state.guestData = action.payload;
+    },
+    resetOrder: () => initialState
+  }
 });
 
-// Exportar las acciones
-export const { setOrder, resetOrder } = orderSlice.actions;
-
-// Exportar el reducer
+export const { setOrder, setGuestData, resetOrder } = orderSlice.actions;
 export default orderSlice.reducer;

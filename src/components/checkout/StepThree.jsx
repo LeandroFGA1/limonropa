@@ -1,47 +1,105 @@
-import React from "react";
-import { useSelector } from "react-redux"; 
+import React, {useEffect,useRef} from "react";
+import { useSelector } from "react-redux";
 import { Typography } from "@material-tailwind/react";
-
+import axios from "axios";
+import { BASE_URL } from "../../App";
 const StepThree = () => {
-  // Código original, actualmente inhabilitado mientras se desarrolla la funcionalidad:
-  /*
-  const { items = [], paymentMethod, totalAmount, orderCode: cartOrderCode } = useSelector((state) => state.cart);
-  const { tracking_number } = useSelector((state) => state.order);  
-
-  if (!items.length) {
-    return <p>No hay productos en tu carrito.</p>;
-  }
-
-  const orderCode = tracking_number || cartOrderCode || "Generando...";
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const paymentMethod = useSelector((state) => state.cart.paymentMethod);
+  const detallesEnviados = useRef(false);
+  const order = useSelector((state) => state.order.pedido);
+  const guestData = useSelector((state) => state.order.guestData);
+  useEffect(() => {
+    const enviarDetallesPedido = async () => {
+      if (detallesEnviados.current || !order?.id || !cartItems.length) return;
+  
+      detallesEnviados.current = true;
+  
+      for (const item of cartItems) {
+        const payload = {
+          item_type: "producto",
+          cantidad: item.quantity,
+          precio: item.price,
+          pedido: order.id,
+          producto: item.productID
+        };
+  
+        try {
+          const response = await axios.post(`${BASE_URL}/api/detalles-pedido/`, payload);
+          // console.log("/api/detalles-pedido/ response:", response.data);
+        } catch (error) {
+          console.error("Error al enviar detalle de pedido:", error);
+        }
+      }
+    };
+  
+    enviarDetallesPedido();
+  }, [order, cartItems]);
 
   return (
-    <div>
-      <Typography variant="h5">Gracias por tu compra</Typography>
-      <p>Tu pedido está en proceso.</p>
+    <div className="flex flex-col gap-4 p-4">
+      <Typography variant="h5">Resumen Final</Typography>
 
-      <div className="mt-4 p-4 bg-gray-100 rounded-md">
-        <pre className="text-sm text-gray-700 overflow-auto max-w-full whitespace-pre-wrap break-words">
-          {`Productos: 
-${items.map((item) => `${item.name.replace(/_/g, ' ')} (Cantidad: ${item.quantity}) - $${(item.price * item.quantity)}`).join('\n')}
-
-Precio Total: $${totalAmount}
-
-Código de Pedido (Tracking): ${orderCode} 
-
-Recibirás un PDF con los detalles de tu pedido por WhatsApp/Correo.`}
-        </pre>
+      <div>
+        <Typography variant="h6">Productos:</Typography>
+        <ul className="pl-4">
+          {cartItems.map((item, index) => (
+            <li key={index}>
+              {item.name.replace(/_/g, ' ')} x {item.quantity} = ${item.quantity * item.price}
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  );
-  */
 
-  // Nuevo retorno mientras se desarrolla la funcionalidad:
-  return (
-    <div className="flex flex-col items-center justify-center h-full">
-      <Typography variant="h5">Funcionalidad en Desarrollo</Typography>
-      <p className="text-gray-700 mt-4">
-        La funcionalidad actual se encuentra en fase de desarrollo técnico. Por el momento, no es posible continuar con el proceso hasta completar la integración de la lógica necesaria.
-      </p>
+      <div>
+        <Typography variant="h6">Total:</Typography>
+        <p>${totalAmount.toLocaleString("es-CL")}</p>
+      </div>
+
+      <div>
+        <Typography variant="h6">Método de Pago:</Typography>
+        <p>{paymentMethod || order?.pago}</p>
+      </div>
+
+      {order && (
+        <>
+          <div>
+            <Typography variant="h6">Dirección de Envío:</Typography>
+            <p>{order.direccion_envio}</p>
+          </div>
+
+          <div>
+            <Typography variant="h6">Número de Seguimiento:</Typography>
+            <p>{order.tracking_number}</p>
+          </div>
+
+          <div>
+            <Typography variant="h6">Fecha de Creación:</Typography>
+            <p>{new Date(order.fecha_creacion).toLocaleString("es-CL")}</p>
+          </div>
+
+          <div>
+            <Typography variant="h6">ID del Pedido:</Typography>
+            <p>{order.id}</p>
+          </div>
+        </>
+      )}
+
+      {guestData && (
+        <div>
+          <Typography variant="h6">Datos del Cliente Invitado:</Typography>
+          <ul className="pl-4">
+            <li>Nombre: {guestData.primer_nombre} {guestData.segundo_nombre}</li>
+            <li>Apellido: {guestData.primer_apellido} {guestData.segundo_apellido}</li>
+            <li>RUN: {guestData.run}-{guestData.dv}</li>
+            <li>Región ID: {guestData.region}</li>
+            <li>Comuna ID: {guestData.comuna}</li>
+            <li>Dirección: {guestData.direccion}</li>
+            <li>Email: {guestData.email}</li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

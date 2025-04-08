@@ -19,7 +19,6 @@ const CheckOut = () => {
   const [disableTwoStep, setDisableTwoStep] =useState(true);
   const regions = useSelector((state) => state.chile.regions); 
   const dispatch = useDispatch();
-
   const paymentMethod = useSelector(state => state.cart.paymentMethod);
   const totalAmount = useSelector(state => state.cart.totalAmount);
   const pdfSent = useSelector(state => state.cart.pdfSent);

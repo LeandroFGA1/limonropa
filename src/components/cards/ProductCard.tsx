@@ -14,6 +14,7 @@ interface ProductCardProps {
   soldCount: number;
   stock: number;
   description: string;
+  productID:number;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -27,8 +28,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   imageUrl,
   stock,
   description,
+  productID,
   rating,
   soldCount,
+  
 }) => {
 
   // Uso de useMemo para evitar cálculos innecesarios en cada render
@@ -70,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         <Link
           to={`/product/${sanitizedName}`}
-          state={{ product: { name, price, originalPrice, discount, brand, category, image1: imageUrl, stock, description, id } }}
+          state={{ product: { name, price, originalPrice, discount, brand, category, image1: imageUrl, stock, description, id,productID } }}
           className="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded hover:bg-blue-700 transition-colors duration-300"
           aria-label={`Ver detalles de ${formattedName}`}
         >

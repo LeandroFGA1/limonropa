@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardBody, Typography, Button } from "@material-tailwind/react";
+import textGeneral from '../text/textGeneral';
 
 const VideoPrueba = () => {
     return (
@@ -21,17 +22,17 @@ const VideoPrueba = () => {
                 {/* Texto */}
                 <CardBody className="w-full lg:w-[60%] p-6 text-center lg:text-left">
                     <Typography variant="h6" color="gray" className="mb-4 uppercase sm:text-2xl lg:text-2xl">
-                        Lorem
+                        {textGeneral.videoPrueba.category}
                     </Typography>
                     <Typography variant="h4" color="blue-gray" className="mb-2 sm:text-2xl lg:text-3xl">
-                        Lorem ipsum dolor sit amet consect
+                        {textGeneral.videoPrueba.title}
                     </Typography>
                     <Typography color="gray" className="mb-8 font-normal sm:text-xl lg:text-2xl">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum ducimus animi quia distinctio magnam inventore ea, dolorem nobis explicabo alias soluta est enim facilis commodi temporibus eligendi sint suscipit veniam.
+                        {textGeneral.videoPrueba.description}
                     </Typography>
                     <a href="#" className="inline-block">
                         <Button variant="text" className="flex items-center gap-2 sm:text-lg">
-                            Lorem ipsum dolo
+                            {textGeneral.videoPrueba.button}
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"

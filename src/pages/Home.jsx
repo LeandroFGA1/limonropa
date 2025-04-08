@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setRegions } from '../store/chileSlice';
 import { BASE_URL } from '../App';
 import BannerECO from '../components/banners/BannerECO';
+import StoreAddress from '../components/StoreAddress';
 
 const Home = () => {
 
@@ -60,6 +61,7 @@ const Home = () => {
             <div className='w-full overflow-hidden'>
                 <UnderlineTabs />
                 <OtherBanner />
+                <StoreAddress/>
                 <VideoPrueba />
             </div>
         </div>

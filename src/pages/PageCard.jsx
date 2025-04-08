@@ -44,7 +44,13 @@ const PageCard = () => {
       const quantityToAdd = newTotalQuantity > 10 ? 10 - (existingItem?.quantity || 0) : quantity;
 
       if (quantityToAdd > 0) {
-        const productToAdd = { ...product, quantity: quantityToAdd };
+        const productToAdd = {
+          ...product,
+          quantity: quantityToAdd,
+          productID: product.productID,
+          id: product.id
+        };
+        
         dispatch(addToCart(productToAdd));
         setAddedItem(true);
       } else {
