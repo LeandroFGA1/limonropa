@@ -12,6 +12,7 @@ import Contact from '../pages/Contact';
 import MarkertCategories from '../pages/MarkertCategories';
 import MarketBrands from '../pages/MarkertBrands';
 import Services from '../pages/Services';
+import ClientOrderPage from '../pages/ClientOrderPage';
 const Router = () => {
     const location = useLocation();
 

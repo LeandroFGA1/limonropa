@@ -118,19 +118,19 @@ export default{
           items: [
             {
               text: "La industria textil es responsable del 10% de las emisiones de carbono a nivel global y produce alrededor del 20% de las aguas residuales mundiales.",
-              image: "porque1"
+              image: "logo"
             },
             {
               text: "La producción mundial de ropa y calzado produce el 8% de los gases de efecto invernadero y cada segundo se entierra o quema la fibra textil equivalente a un camión de basura.",
-              image: "porque2"
+              image: "logo"
             },
             {
               text: "Estudios indican que en Chile entre 36 a 39 mil toneladas de ropa son desechadas en el desierto a lo largo de un año. Alto Hospicio, Iquique y el desierto de Atacama en Chile se han convertido en un gigantesco basurero de ropa, donde toneladas de productos textiles son desechados en el desierto.",
-              image: "porque3"
+              image: "logo"
             },
             {
               text: "Según estadísticas el 73% de la ropa termina en vertederos o rellenos sanitarios y a la actualidad solo un 1% se recicla.",
-              image: "porque4"
+              image: "logo"
             }
           ]
         },
