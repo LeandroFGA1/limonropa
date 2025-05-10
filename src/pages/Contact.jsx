@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Select, Option, Textarea, Button, Tooltip } from "@material-tailwind/react";
+import { Input, Select, Option, Textarea, Button, Typography } from "@material-tailwind/react";
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../App';
@@ -14,97 +14,68 @@ const Contact = () => {
         motivo: state?.motivo || '',
         mensaje: state?.mensaje || ''
     });
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [feedback, setFeedback] = useState({ success: '', error: '' });
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
+    const handleInputChange = ({ target: { name, value } }) => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
     const handleSubmit = async () => {
-        if (!formData.nombres.trim() || !formData.email.trim() || !formData.mensaje.trim()) {
-        setErrorMessage('Completa los campos obligatorios.');
-        setSuccessMessage('');
-        return;
+        const { nombres, email, mensaje } = formData;
+        if (!nombres.trim() || !email.trim() || !mensaje.trim()) {
+            setFeedback({ error: 'Completa los campos obligatorios.', success: '' });
+            return;
         }
 
         try {
-        const payload = {
-            nombre: formData.nombres,
-            apellidos: formData.apellidos,
-            email: formData.email,
-            telefono: formData.telefono,
-            tipo_contacto: formData.motivo,
-            mensaje: formData.mensaje,
-        };
+            const payload = {
+                nombre: formData.nombres,
+                apellidos: formData.apellidos,
+                email: formData.email,
+                telefono: formData.telefono,
+                tipo_contacto: formData.motivo,
+                mensaje: formData.mensaje,
+            };
 
-        await axios.post(`${BASE_URL}api/contact/`, payload);
-        setSuccessMessage('¡Mensaje enviado exitosamente!');
-        setErrorMessage('');
-        setFormData({ nombres: '', apellidos: '', email: '', telefono: '', motivo: '', mensaje: '' });
-        } catch (error) {
-        console.log(error);
-        if (error.response) {
-            setErrorMessage('Error desconocido al enviar el formulario.');
-        } else {
-            setErrorMessage('Error al conectar con el servidor.');
-        }
-        setSuccessMessage('');
+            await axios.post(`${BASE_URL}api/contact/`, payload);
+            setFeedback({ success: '¡Mensaje enviado exitosamente!', error: '' });
+            setFormData({
+                nombres: '', apellidos: '', email: '', telefono: '', motivo: '', mensaje: ''
+            });
+        } catch {
+            setFeedback({ error: 'Error al enviar el formulario. Intenta más tarde.', success: '' });
         }
     };
 
     return (
-        <div className="flex w-full flex-col items-center justify-center gap-4 px-6 mt-3">
-        <Input
-            name="nombres"
-            maxLength={50}
-            label="Nombres"
-            placeholder="Juan Nicolás"
-            value={formData.nombres}
-            onChange={handleInputChange}
-        />
-        <Input
-            name="apellidos"
-            maxLength={50}
-            label="Apellido"
-            placeholder="Juarez Pérez"
-            value={formData.apellidos}
-            onChange={handleInputChange}
-        />
-        <Input
-            name="email"
-            label="Email"
-            placeholder="juan@ejemplo.com"
-            value={formData.email}
-            onChange={handleInputChange}
-        />
-        <Input
-            name="telefono"
-            label="Teléfono"
-            placeholder="12345678"
-            value={formData.telefono}
-            onChange={handleInputChange}
-        />
-        <Select
-            name="motivo"
-            label="Motivo"
-            value={formData.motivo}
-            onChange={(e) => handleInputChange({ target: { name: 'motivo', value: e } })}
-        >
-            <Option value="producto">Producto</Option>
-            <Option value="servicio">Servicio</Option>
-            <Option value="otro">Otros</Option>
-        </Select>
-        <Textarea
-            name="mensaje"
-            label="Mensaje"
-            value={formData.mensaje}
-            onChange={handleInputChange}
-        />
-        {successMessage && <Tooltip content={successMessage}><p className="text-green-500">{successMessage}</p></Tooltip>}
-        {errorMessage && <Tooltip content={errorMessage}><p className="text-red-500">{errorMessage}</p></Tooltip>}
-        <Button onClick={handleSubmit}>Enviar</Button>
+        <div className="max-w-2xl w-full mx-auto mt-12 p-6 bg-white rounded shadow-md flex flex-col gap-5">
+            <Typography variant="h4" color="blue-gray" className="text-center">
+                Contáctanos
+            </Typography>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input label="Nombres" name="nombres" value={formData.nombres} onChange={handleInputChange} required />
+                <Input label="Apellidos" name="apellidos" value={formData.apellidos} onChange={handleInputChange} />
+                <Input label="Email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
+                <Input label="Teléfono" name="telefono" value={formData.telefono} onChange={handleInputChange} />
+            </div>
+
+            <Select
+                label="Motivo"
+                value={formData.motivo}
+                onChange={(val) => handleInputChange({ target: { name: 'motivo', value: val } })}
+              >
+                <Option value="producto">Producto</Option>
+                <Option value="servicio">Servicio</Option>
+                <Option value="otro">Otro</Option>
+            </Select>
+
+            <Textarea label="Mensaje" name="mensaje" value={formData.mensaje} onChange={handleInputChange} required />
+
+            {feedback.success && <p className="text-green-600">{feedback.success}</p>}
+            {feedback.error && <p className="text-red-600">{feedback.error}</p>}
+
+            <Button color="blue" onClick={handleSubmit}>Enviar</Button>
         </div>
     );
 };

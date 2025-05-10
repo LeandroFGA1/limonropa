@@ -11,7 +11,8 @@ const ColorComp = () => {
     ];
 
     return (
-        <div className='flex-estohayqueactivarlo flex-col gap-3 rounded px-[10%] xl:flex-row xl:flex-wrap xl:items-center hidden'>
+        <div className='flex flex-col gap-3 rounded px-[10%] xl:flex-row xl:flex-wrap xl:items-center'>
+
             <h2 className=' text-2xl capitalize'>Selecciona un color</h2>
             <ul className='flex items-center justify-start flex-wrap gap-2 max-w-[300px]'>
                 {colors.map((color, index) => (

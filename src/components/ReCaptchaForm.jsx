@@ -19,6 +19,7 @@ const ReCaptchaForm = ({ regions }) => {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const communes = useSelector((state) => state.chile.communes);
+    const inputBase = "w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400";
 
     const [formData, setFormData] = useState({
         email: '',
@@ -183,201 +184,85 @@ const handleLogin = async () => {
     : isPasswordValid && captchaToken;
 
     return (
-        <div className="flex flex-col items-center space-y-4 p-6 border border-gray-300 rounded-lg max-w-sm mx-auto mt-10">
-            <h2 className="text-lg font-semibold text-gray-700">
-                {isRegister ? "Registro" : "Inicio de Sesión"}
-            </h2>
-            <form onSubmit={handleSubmit} className="flex flex-col space-y-4 w-full">
-                {isRegister && (
-                    <>
-                        <input
-                            type="text"
-                            name="primer_nombre"
-                            placeholder="Primer Nombre"
-                            value={formData.primer_nombre}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="segundo_nombre"
-                            placeholder="Segundo Nombre"
-                            value={formData.segundo_nombre}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                        />
-                        <input
-                            type="text"
-                            name="primer_apellido"
-                            placeholder="Primer Apellido"
-                            value={formData.primer_apellido}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="segundo_apellido"
-                            placeholder="Segundo Apellido"
-                            value={formData.segundo_apellido}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                        />
-                        <input
-                            type="text"
-                            name="run"
-                            placeholder="RUN"
-                            value={formData.run}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                            required
-                        />
-                        <input
-                            type="text"
-                            name="dv"
-                            placeholder="Dígito Verificador"
-                            value={formData.dv}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                            required
-                        />
-                        <select
-                            name="region"
-                            value={formData.region}
-                            onChange={handleRegionChange}
-                            className="p-2 border rounded"
-                            required
-                        >
-                            <option value="" disabled>Selecciona una región</option>
-                            {regions.map((region) => (
-                                <option key={region.id} value={region.id}>{region.nombre}</option> 
-                            ))}
-                        </select>
+  <div className="max-w-md mx-auto my-10 bg-white shadow-md rounded-lg p-6 border border-gray-200">
+    <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">
+      {isRegister ? "Crear cuenta" : "Iniciar Sesión"}
+    </h2>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {isRegister && (
+        <>
+          <div className="flex gap-2">
+            <input type="text" name="primer_nombre" placeholder="Primer Nombre" value={formData.primer_nombre} onChange={handleInputChange} className="input-field w-1/2" required />
+            <input type="text" name="segundo_nombre" placeholder="Segundo Nombre" value={formData.segundo_nombre} onChange={handleInputChange} className="input-field w-1/2" />
+          </div>
+          <div className="flex gap-2">
+            <input type="text" name="primer_apellido" placeholder="Primer Apellido" value={formData.primer_apellido} onChange={handleInputChange} className="input-field w-1/2" required />
+            <input type="text" name="segundo_apellido" placeholder="Segundo Apellido" value={formData.segundo_apellido} onChange={handleInputChange} className="input-field w-1/2" />
+          </div>
+          <div className="flex gap-2">
+            <input type="text" name="run" placeholder="RUN" value={formData.run} onChange={handleInputChange} className="input-field w-2/3" required />
+            <input type="text" name="dv" placeholder="DV" value={formData.dv} onChange={handleInputChange} className="input-field w-1/3" required />
+          </div>
 
+          <select name="region" value={formData.region} onChange={handleRegionChange} className="input-field" required>
+            <option value="" disabled>Selecciona una región</option>
+            {regions.map((region) => (
+              <option key={region.id} value={region.id}>{region.nombre}</option>
+            ))}
+          </select>
 
-                        <select
-                            name="comuna"
-                            value={formData.comuna}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                            disabled={loading}
-                            required
-                        >
-                            <option value="" disabled>Selecciona una comuna</option>
-                            {comunas.map((comuna) => (
-                                <option key={comuna.id} value={comuna.id}>{comuna.nombre}</option>
-                            ))}
-                        </select>
+          <select name="comuna" value={formData.comuna} onChange={handleInputChange} className="input-field" required disabled={loading}>
+            <option value="" disabled>Selecciona una comuna</option>
+            {comunas.map((comuna) => (
+              <option key={comuna.id} value={comuna.id}>{comuna.nombre}</option>
+            ))}
+          </select>
 
-                        <input
-                            type="text"
-                            name="direccion"
-                            placeholder="Dirección"
-                            value={formData.direccion}
-                            onChange={handleInputChange}
-                            className="p-2 border rounded"
-                            required
-                        />
-                    </>
-                )}
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Correo"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="p-2 border rounded"
-                    required
-                />
-                <div className="relative">
-                    <input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        placeholder="Contraseña"
-                        value={formData.password}
-                        onChange={handleInputChange}
-                        minLength={10}
-                        className="p-2 border rounded w-full pr-20"
-                        required
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword((prev) => !prev)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-blue-600 hover:underline"
-                    >
-                        {showPassword ? "Ocultar" : "Ver"}
-                    </button>
-                </div>
+          <input type="text" name="direccion" placeholder="Dirección" value={formData.direccion} onChange={handleInputChange} className="input-field" required />
+        </>
+      )}
 
-                {isRegister && (
-                    <div className="relative">
-                        <input
-                        type={showPasswordConfirm ? "text" : "password"}
-                        name="password_confirm"
-                        placeholder="Confirmar Contraseña"
-                        value={formData.password_confirm}
-                        onChange={handleInputChange}
-                        minLength={10}
-                        className="p-2 border rounded w-full pr-20"
-                        required
-                        />
-                        <button
-                        type="button"
-                        onClick={() => setShowPasswordConfirm((prev) => !prev)}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-blue-600 hover:underline"
-                        >
-                        {showPasswordConfirm ? "Ocultar" : "Ver"}
-                        </button>
-                    </div>
-                  
-                )}
-                <div className="flex flex-col items-center">
-                {isLogin ? (
-                    <p className="text-lg text-gray-700">Completar los campos para continuar</p>
-                ) : (
-                    <>
-                        <button
-                            onClick={handleReCaptcha}
-                            type="button"
-                            className={`px-4 py-2 rounded mt-4 flex items-center justify-center ${
-                                loading ? "bg-gray-400" : "bg-blue-500 text-white hover:bg-blue-600 transition"
-                            }`}
-                            disabled={loading || captchaToken}
-                        >
-                            {loading ? (
-                                <Spinner className="w-5 h-5" />
-                            ) : (
-                                captchaToken ? "Verificación completada" : "Verificar reCAPTCHA"
-                            )}
-                        </button>
-                        {captchaToken && (
-                            <p className="text-sm text-green-600 mt-2">
-                                ¡CAPTCHA verificado con éxito!
-                            </p>
-                        )}
-                    </>
-                )}
-            </div>
+      <input type="email" name="email" placeholder="Correo electrónico" value={formData.email} onChange={handleInputChange} className="input-field" required />
 
-                <button
-                    type="submit"
-                    className={`px-4 py-2 rounded flex items-center justify-center ${
-                        isFormValid ? "bg-blue-500 text-white hover:bg-blue-600 transition" : "bg-gray-400 text-gray-200"
-                    }`}
-                    disabled={!isFormValid}
-                >
-                    {isRegister ? 'Registrar' : 'Iniciar Sesión'}
-                </button>
-            </form>
-            <button
-                onClick={toggleAuthMode}
-                className="text-blue-500 hover:underline text-sm mt-2"
-            >
-                {isRegister ? "¿Ya tienes cuenta? Inicia Sesión" : "¿No tienes cuenta? Regístrate"}
-            </button>
+      <div className="relative">
+        <input type={showPassword ? "text" : "password"} name="password" placeholder="Contraseña" value={formData.password} onChange={handleInputChange} className="input-field pr-16" required />
+        <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-2 text-blue-600 text-sm">
+          {showPassword ? "Ocultar" : "Ver"}
+        </button>
+      </div>
+
+      {isRegister && (
+        <div className="relative">
+          <input type={showPasswordConfirm ? "text" : "password"} name="password_confirm" placeholder="Confirmar Contraseña" value={formData.password_confirm} onChange={handleInputChange} className="input-field pr-16" required />
+          <button type="button" onClick={() => setShowPasswordConfirm(!showPasswordConfirm)} className="absolute right-3 top-2 text-blue-600 text-sm">
+            {showPasswordConfirm ? "Ocultar" : "Ver"}
+          </button>
         </div>
-    );
+      )}
+
+      {isRegister && (
+        <div className="flex flex-col items-center">
+          <button onClick={handleReCaptcha} type="button" className={`w-full py-2 mt-2 rounded ${loading ? "bg-gray-300" : "bg-blue-500 text-white hover:bg-blue-600"} transition-all`} disabled={loading || captchaToken}>
+            {loading ? <Spinner className="w-5 h-5" /> : (captchaToken ? "Verificación completada" : "Verificar reCAPTCHA")}
+          </button>
+          {captchaToken && <p className="text-sm text-green-600 mt-2">¡CAPTCHA verificado con éxito!</p>}
+        </div>
+      )}
+
+      <button type="submit" disabled={!isFormValid} className={`w-full py-2 mt-4 rounded ${isFormValid ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-400 text-white"} transition`}>
+        {isRegister ? "Registrar" : "Iniciar Sesión"}
+      </button>
+    </form>
+
+    <p className="text-center text-sm mt-4">
+      {isRegister ? "¿Ya tienes cuenta?" : "¿No tienes cuenta?"}{" "}
+      <button onClick={toggleAuthMode} className="text-blue-600 hover:underline">
+        {isRegister ? "Inicia sesión" : "Regístrate"}
+      </button>
+    </p>
+  </div>
+);
+
 };
 
 export default ReCaptchaForm;

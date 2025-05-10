@@ -135,17 +135,42 @@ export default{
           ]
         },
         nuestroPlan: {
-          items: [
-            "Queremos que el planeta tenga futuro",
-            "Para reutilizar al máximo los recursos residuales",
-            "Hacemos realidad la Economía Circular",
-            "La principal tarea de la Economía Circular es producir a partir de residuos nuevas materias primas que vuelvan al círculo de la productividad. En MDR cada año convertimos y transformamos más de 800 mil toneladas de residuos sólidos, permitiendo a las empresas contribuir a un planeta más sustentable y optimizar su modelo productivo. Hoy los residuos ya no son un problema, ahora son activos capaces de generar ganancias.",
-            "¿En qué consiste la Gestión Integral de Residuos?",
-            "Los residuos, tanto sólidos como líquidos, son una preocupación para las empresas comprometidas con el medio ambiente. MDR diseña planes de manejo adaptados a cada industria, combinando experiencia profesional y tecnología avanzada para lograr una óptima segregación en origen, recolección, acondicionamiento y traslado de residuos para su reutilización y revalorización.",
-            "Servicio de transporte de residuos",
-            "MDR transporta residuos asimilables a domésticos y orgánicos generados por sus clientes industriales y comerciales. Contamos con una amplia variedad de tecnologías y equipos para implementar soluciones eficientes y seguras, adaptadas a cada tipo de residuo y su logística. Todos nuestros camiones cuentan con Resolución Sanitaria y tecnología de monitoreo digital (GPS) para un control total del servicio."
-          ]
-        },
+            items: [
+              {
+                title: "Queremos que el planeta tenga futuro",
+                image: "logo"
+              },
+              {
+                title: "Para reutilizar al máximo los recursos residuales",
+                image: "logo"
+              },
+              {
+                title: "Hacemos realidad la Economía Circular",
+                image: "logo"
+              },
+              {
+                title: "La principal tarea de la Economía Circular",
+                text: "Es producir a partir de residuos nuevas materias primas que vuelvan al círculo de la productividad. En MDR cada año convertimos y transformamos más de 800 mil toneladas de residuos sólidos, permitiendo a las empresas contribuir a un planeta más sustentable y optimizar su modelo productivo. Hoy los residuos ya no son un problema, ahora son activos capaces de generar ganancias."
+              },
+              {
+                title: "¿En qué consiste la Gestión Integral de Residuos?",
+                image: "logo"
+              },
+              {
+                title: "Manejo de residuos sólidos y líquidos",
+                text: "Los residuos, tanto sólidos como líquidos, son una preocupación para las empresas comprometidas con el medio ambiente. MDR diseña planes de manejo adaptados a cada industria, combinando experiencia profesional y tecnología avanzada para lograr una óptima segregación en origen, recolección, acondicionamiento y traslado de residuos para su reutilización y revalorización."
+              },
+              {
+                title: "Servicio de transporte de residuos",
+                image: "logo"
+              },
+              {
+                title: "Tecnología y logística avanzada",
+                text: "MDR transporta residuos asimilables a domésticos y orgánicos generados por sus clientes industriales y comerciales. Contamos con una amplia variedad de tecnologías y equipos para implementar soluciones eficientes y seguras, adaptadas a cada tipo de residuo y su logística. Todos nuestros camiones cuentan con Resolución Sanitaria y tecnología de monitoreo digital (GPS) para un control total del servicio."
+              }
+            ]
+          }
+          
         
       }
       

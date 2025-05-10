@@ -12,6 +12,7 @@ import Contact from '../pages/Contact';
 import MarkertCategories from '../pages/MarkertCategories';
 import MarketBrands from '../pages/MarkertBrands';
 import Services from '../pages/Services';
+import AboutUss from '../pages/AboutUss';
 import ClientOrderPage from '../pages/ClientOrderPage';
 const Router = () => {
     const location = useLocation();
@@ -29,7 +30,8 @@ const Router = () => {
             <Route path='/product/:name' element={<PageCard />} />
             <Route path='/checkOut' element={<CheckOut />} />
             <Route path='/access' element={<Access />} />
-            <Route path='/aboutUs' element={<AboutUs />} />
+            {/* <Route path='/aboutUs' element={<AboutUs />} /> */}
+            <Route path='/aboutUs' element={<AboutUss />} />
             <Route path='/access/profile' element={<Profile/>}/>
             <Route path="/contact" element={<Contact/>}/>
             

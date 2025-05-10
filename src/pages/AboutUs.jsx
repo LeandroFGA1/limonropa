@@ -127,19 +127,19 @@ const AboutUs = () => {
         <Card className="shadow-lg p-6 text-center w-[90%] mx-auto bg-main2/30">
           <CardBody>
             <ul className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl flex items-center flex-col justify-between gap-10">
-              {textGeneral.aboutUs.nuestroPlan.items.map((text, idx) => {
-                const Tag = text.length < 100 ? "h2" : "p";
-                const classes = text.length < 100 ? "font-semibold text-2xl sm:text-3xl w-[90%]" : " text-lg";
-                return (
-                  <li key={idx} className="flex flex-col items-center justify-center gap-5 ">
-                    <Tag className={classes}>{text}</Tag>
-                  </li>
-                );
-              })}
+              {textGeneral.aboutUs.nuestroPlan.items.map((item, idx) => (
+                <li key={idx} className="flex flex-col items-center justify-center gap-5 ">
+                  <h2 className="font-semibold text-2xl sm:text-3xl w-[90%]">{item.title}</h2>
+                  {item.text && (
+                    <p className="text-lg">{item.text}</p>
+                  )}
+                </li>
+              ))}
             </ul>
           </CardBody>
         </Card>
       </section>
+
     </div>
   );
 };

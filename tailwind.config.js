@@ -22,8 +22,34 @@ module.exports = withMT({
         "main2": "#f9f6eb",
         "main3": "#776549",
         "bg-body": "#faf5ef",
+        crimson: '#dc143c',
       },
       keyframes: {
+        heat: {
+          '0%': { color: '#dc143c' },
+          '100%': { color: '#000000' }
+        },
+        fadeInUp: {
+          '0%': { opacity: 0, transform: 'translateY(20px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' }
+        },
+        fadeInLeft: {
+          '0%': { opacity: 0, transform: 'translateX(-20px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' }
+        },
+        fadeInRight: {
+          '0%': { opacity: 0, transform: 'translateX(20px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' }
+        },
+        zoomIn: {
+          '0%': { opacity: 0, transform: 'scale(0.8)' },
+          '100%': { opacity: 1, transform: 'scale(1)' }
+        },
+        fadeInScale: {
+          '0%': { opacity: 0, transform: 'scale(1.2) rotate(-2deg)' },
+          '100%': { opacity: 1, transform: 'scale(1) rotate(0)' }
+        },
+        
         drawTop: {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
@@ -78,6 +104,12 @@ module.exports = withMT({
         'infinite-scroll': 'infinite-scroll 45s linear infinite',
         "cartAnimation": 'cartAnimation 1.5s ease-in-out forwards',
         scrollDown: 'scrollDown 2s ease infinite',
+        heat: 'heat 3s ease-out forwards',
+        fadeInUp: 'fadeInUp 0.8s ease-out forwards',
+        fadeInLeft: 'fadeInLeft 0.8s ease-out forwards',
+        fadeInRight: 'fadeInRight 0.8s ease-out forwards',
+        zoomIn: 'zoomIn 0.6s ease-out forwards',
+        fadeInScale: 'fadeInScale 0.8s ease-out forwards',
       },
     },
   },

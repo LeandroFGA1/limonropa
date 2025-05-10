@@ -95,7 +95,7 @@ const CarouselBanner = () => {
                 </div>
                 
             </div>
-            <img
+            {/* <img
                 src={directory.banner3}
                 className="h-full w-full object-cover"
                 alt=''
@@ -134,7 +134,7 @@ const CarouselBanner = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
         </Carousel>

@@ -102,10 +102,11 @@ const PageCard = () => {
           />
           
           {tooltipVisible && (
-            <div className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] bg-red-500 text-white py-2 px-4 rounded">
-              ¡Has alcanzado el límite de 10 unidades  en este producto!
+            <div className="fixed top-4 right-4 z-50 bg-red-600 text-white px-4 py-2 rounded shadow-md">
+              ¡Has alcanzado el límite de 10 unidades en este producto!
             </div>
           )}
+
         </div>
       </div>
     </div>

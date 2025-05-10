@@ -5,7 +5,8 @@ const Size = () => {
     const [selectedSize, setSelectedSize] = useState(null);
 
     return (
-        <div className="flex-estohayqueactivarlo flex-col gap-4 w-full px-[10%] xl:px-20 xl:flex-row xl:flex-wrap xl:items-center hidden">
+        <div className="flex flex-col gap-4 w-full px-[10%] xl:px-20 xl:flex-row xl:flex-wrap xl:items-center">
+
             {/* Encabezado de Tallas y Guía de tallas */}
             <div className="flex justify-between items-center w-full">
                 <p className="text-base font-medium">Tallas</p>
