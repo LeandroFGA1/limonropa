@@ -6,47 +6,16 @@ import NavProfileMenu from './NavProfileMenu';
 import MenuWhitItems from './MenuWhitItems';
 import directory from '../../assets/imgs/directory';
 import BannerInfinite from './BannerInfinite';
+import textGeneral from '../../text/textGeneral';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
     const [navbarSize, setNavbarSize] = useState('h-[100px]');
     const [lastScrollY, setLastScrollY] = useState(0);
+    const technologyMenuItems = textGeneral.headerMenus.tienda;
+    const developmentMenuItems = textGeneral.headerMenus.sobreNosotros;
 
-    const technologyMenuItems = [
-        {
-            title: 'Categorias',
-            description: 'Explore the latest in AI advancements.',
-            link:"/store/categories",
-        },
-        {
-            title: 'Productos',
-            description: 'Discover secure and decentralized solutions.',
-            link:"/store",
-        },
-        {
-            title: 'Marcas',
-            description: 'Learn about scalable and efficient services.',
-            link:"/store/brands",
-        },
-    ];
-
-    const developmentMenuItems = [
-        {
-            title: 'Sobre Nosotros',
-            description: 'Build amazing user interfaces.',
-            link:"/aboutUs",
-        },
-        // {
-        //     title: 'Servicios',
-        //     description: 'Power your applications with robust APIs.',
-        //     link:"/services",
-        // },
-        {
-            title: 'Contacto',
-            description: 'lorem nostubres.',
-            link:"/contact",
-        },
-    ];
+    
 
     useEffect(() => {
         const onScroll = () => handleScroll(setNavbarSize, lastScrollY, setLastScrollY);

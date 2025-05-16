@@ -50,55 +50,52 @@ export default{
         }
     ],
     underlineTabs: {
-        title: "Preguntas Frecuentes",
-        tabs: [
-            {
-                label: "Lorem 1",
-                value:"lorem1",
-                desc: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.`,
-                accordionData: [
-                    { question: "Pregunta 1 de Tab 1", answer: "Respuesta para Tab 1, Pregunta 1" },
-                    { question: "Pregunta 2 de Tab 1", answer: "Respuesta para Tab 1, Pregunta 2" },
-                    { question: "Pregunta 3 de Tab 1", answer: "Respuesta para Tab 1, Pregunta 3" },
-                ]
-            },
-            {
-                label: "Lorem 2",
-                value:"lorem2",
-                desc: `Sed nisi. Nulla quis sem at nibh elementum imperdiet. 
-                Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue.`,
-                accordionData: [
-                    { question: "Pregunta 1 de Tab 2", answer: "Respuesta para Tab 2, Pregunta 1" },
-                    { question: "Pregunta 2 de Tab 2", answer: "Respuesta para Tab 2, Pregunta 2" },
-                    { question: "Pregunta 3 de Tab 2", answer: "Respuesta para Tab 2, Pregunta 3" },
-                ]
-            },
-            {
-                label: "Lorem 3",
-                value:"lorem3",
-                desc: `Mauris massa. Vestibulum lacinia arcu eget nulla. 
-                Class aptent taciti sociosqu ad litora torquent per conubia nostra.`,
-                accordionData: [
-                    { question: "Pregunta 1 de Tab 3", answer: "Respuesta para Tab 3, Pregunta 1" },
-                    { question: "Pregunta 2 de Tab 3", answer: "Respuesta para Tab 3, Pregunta 2" },
-                    { question: "Pregunta 3 de Tab 3", answer: "Respuesta para Tab 3, Pregunta 3" },
-                ]
-            }
-        ]
-    },
+      title: "Preguntas Frecuentes",
+      tabs: [
+          {
+              label: "Envíos y entregas",
+              value: "lorem1",
+              desc: "¿Tiempos, métodos y cobertura? Acá te resolvemos todo sobre cómo y cuándo recibirás tu pedido.",
+              accordionData: [
+                  { question: "¿Cuánto demora el envío?", answer: "Los envíos demoran entre 3 y 7 días hábiles, dependiendo de tu ubicación." },
+                  { question: "¿Hacen envíos a todo Chile?", answer: "Sí, realizamos envíos a todo el país a través de servicios logísticos certificados." },
+                  { question: "¿Puedo hacer seguimiento de mi pedido?", answer: "Claro, recibirás un número de seguimiento una vez despachado." }
+              ]
+          },
+          {
+              label: "Pagos y descuentos",
+              value: "lorem2",
+              desc: "Conocé todos los métodos de pago disponibles y cómo aprovechar nuestros descuentos.",
+              accordionData: [
+                  { question: "¿Qué métodos de pago aceptan?", answer: "Aceptamos tarjetas de crédito, débito, y transferencias bancarias." },
+                  { question: "¿Hay beneficios pagando por transferencia?", answer: "Sí, ofrecemos un 10% de descuento extra por transferencia directa." },
+                  { question: "¿Cuotas sin interés?", answer: "Podés pagar en hasta 4 cuotas sin interés con tarjetas bancarias habilitadas." }
+              ]
+          },
+          {
+              label: "Sustentabilidad",
+              value: "lorem3",
+              desc: "Descubre cómo tus compras ayudan al medio ambiente y fomentan la economía circular.",
+              accordionData: [
+                  { question: "¿Qué hacen con la ropa que no se vende?", answer: "La reciclamos o donamos a organizaciones sociales aliadas." },
+                  { question: "¿Los productos son reutilizados?", answer: "Sí, muchos artículos provienen de procesos de selección y reacondicionamiento." },
+                  { question: "¿Cómo impacta mi compra?", answer: "Cada prenda reciclada reduce la huella de carbono y evita el desperdicio textil." }
+              ]
+          }
+      ]
+  },
     otherBanner: {
-        titlePart1: "s aspernatur fugiat dolorum impedit perferendis earum dolorem.",
-        titlePart2: "Lorem",
+        titlePart1: "Transformá tu forma de consumir moda con nosotros.",
+        titlePart2: "Recicla",
         titlePart3: "ROPA",
-        subtitle: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat repellendus ipsam veritatis fugiat odit dignissimos at alias amet corporis eum maiores cumque, facere culpa voluptate provident quis! Excepturi, eligendi aperiam.",
-        button: "Lorem,in tempore."
+        subtitle: "Cada prenda que salvamos del desecho representa un paso hacia un futuro más limpio. Conoce cómo trabajamos para convertir residuos textiles en oportunidades reales.",
+        button: "Conocé nuestro compromiso"
     },
     videoPrueba: {
-        category: "Lorem",
-        title: "Lorem ipsum dolor sit amet consect",
-        description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum ducimus animi quia distinctio magnam inventore ea, dolorem nobis explicabo alias soluta est enim facilis commodi temporibus eligendi sint suscipit veniam.",
-        button: "Lorem ipsum dolo"
+        category: "Reciclaje en acción",
+        title: "Conocé cómo transformamos residuos textiles",
+        description: "En este video te mostramos el proceso real de reciclaje: desde la recolección de prendas hasta su reintegración como productos reutilizables. Una mirada clara a nuestro compromiso.",
+        button: "Ver historia completa"
     },
     aboutUs: {
         title: "Misión y visión",
@@ -170,9 +167,89 @@ export default{
               }
             ]
           }
-          
-        
       }
+      ,
+          cardCategories: [
+          {
+            title: "La más comprada",
+            image: "card3" // o el nombre que tengas en directory
+          },
+          {
+            title: "La más observada",
+            image: "card4"
+          },
+          {
+            title: "La más sustentable",
+            image: "card3"
+          },
+          {
+            title: "Nueva colección",
+            image: "card4"
+          }
+        ]
+        ,
+        headerMenus: {
+          tienda: [
+            {
+              title: 'Categorías',
+              description: 'Explora nuestras categorías más destacadas de ropa reciclada.',
+              link: '/store/categories',
+            },
+            {
+              title: 'Productos',
+              description: 'Conoce todos nuestros productos disponibles en stock.',
+              link: '/store',
+            },
+            {
+              title: 'Marcas',
+              description: 'Descubre marcas que apoyan la economía circular.',
+              link: '/store/brands',
+            },
+          ],
+          sobreNosotros: [
+            {
+              title: 'Sobre Nosotros',
+              description: 'Conoce nuestra historia y compromiso con el reciclaje textil.',
+              link: '/aboutUs',
+            },
+            {
+              title: 'Contacto',
+              description: '¿Tenés preguntas? Escribinos y te ayudamos.',
+              link: '/contact',
+            },
+          ],
+        }
+        ,
+        footer: {
+          title: "Nuestra Empresa",
+          links: [
+            {
+              title: "Tienda",
+              items: ["Productos", "Categorías", "Marcas", "Ofertas"],
+            },
+            {
+              title: "Información",
+              items: ["Sobre Nosotros", "Cómo comprar", "Preguntas frecuentes", "Contacto"],
+            },
+            {
+              title: "Redes",
+              items: ["Instagram", "Facebook", "TikTok", "YouTube"],
+            },
+          ],
+          copyright: "MDR Textil. Todos los derechos reservados.",
+        }
+        ,
+        market: {
+          filtersTitle: "Filtrar productos",
+          categoryLabel: "Categorías destacadas",
+          brandLabel: "Marcas más buscadas",
+          clearFilters: "Quitar todos los filtros",
+          loadingMessage: "Cargando productos...",
+        }
+
+
+
+
       
 
 

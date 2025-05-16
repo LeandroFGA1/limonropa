@@ -1,22 +1,15 @@
-import React from 'react';
-import CardCategory from './CardCategory'; 
+import React from 'react'
+import CardCategory from './CardCategory'
+import textGeneral from '../text/textGeneral'
 
 const CardCategoryGenerator = () => {
-    const numCards = 4;
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-10 py-10">
+      {textGeneral.cardCategories.map((card, index) => (
+        <CardCategory key={index} title={card.title} image={card.image} />
+      ))}
+    </div>
+  )
+}
 
-    const renderCards = () => {
-        let cardsArray = [];
-        for (let i = 1; i <= numCards; i++) { 
-            cardsArray.push(<CardCategory key={i} cardNumber={i} />); 
-        }
-        return cardsArray;
-    };
-
-    return (
-        <div className="flex flex-wrap items-center justify-center gap-10 py-10">
-            {renderCards()}
-        </div>
-    );
-};
-
-export default CardCategoryGenerator;
+export default CardCategoryGenerator

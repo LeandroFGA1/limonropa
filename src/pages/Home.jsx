@@ -51,13 +51,17 @@ const Home = () => {
             <div>
                 <BannerECO/>
             </div>
-            <div className='h-[75vh] sm:h-[60vh] flex items-center justify-center'>
+            <div className='h-[75vh] md:h-[60vh] flex items-center justify-center my-12 sm:my-0'>
                 <Info />
             </div>
-            <div className='flex items-center justify-center flex-col'>
-                <h2 className='font-extrabold text-2xl'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+
+            <div className='flex items-center justify-center flex-col my-12 sm:my-20'>
+                <h2 className='font-extrabold text-2xl mb-6 text-center px-4'>
+                    Explora nuestras categorías destacadas y encuentra lo que estás buscando
+                </h2>
                 <CardCategoryGenerator />
             </div>
+
             <div className='w-full overflow-hidden'>
                 <UnderlineTabs />
                 <OtherBanner />

@@ -1,18 +1,6 @@
 import { Typography } from "@material-tailwind/react";
-const LINKS = [
-    {
-        title: "Lorem",
-        items: ["Lorem ipsum", "Dolor sit", "Amet consectetur", "Adipiscing elit"],
-    },
-    {
-        title: "Sit",
-        items: ["Sed do", "Eiusmod tempor", "Incididunt ut", "Labore et dolore"],
-    },
-    {
-        title: "Consectetur",
-        items: ["Magna aliqua", "Ut enim", "Ad minim veniam", "Quis nostrud"],
-    },
-];
+import textGeneral from "../text/textGeneral";
+const LINKS = textGeneral.footer.links;
 
 
 const currentYear = new Date().getFullYear();
@@ -22,7 +10,7 @@ const Footer = ()=> {
         <div>
         <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12  text-center md:justify-between">
             <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="logo-ct" className="w-10" />
-            <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+            {/* <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
             <li>
                 <Typography
                 as="a"
@@ -63,16 +51,15 @@ const Footer = ()=> {
                 Lorem
                 </Typography>
             </li>
-            </ul>
+            </ul> */}
         </div>
         <hr className="my-8 border-blue-gray-50" />
         </div>
 
         <div className="mx-auto w-full max-w-7xl px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <Typography variant="h5" className="mb-6">
-            Lorem
-          </Typography>
+          <Typography variant="h5">{textGeneral.footer.title}</Typography>
+
           <div className="grid grid-cols-3 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>
@@ -100,13 +87,10 @@ const Footer = ()=> {
           </div>
         </div>
         <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
-          <Typography
-            variant="small"
-            className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
-          >
-            &copy; {currentYear} <a href="#">Lorem</a>. All
-            Lorem lorem
+          <Typography variant="small" className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0">
+            &copy; {currentYear} {textGeneral.footer.copyright}
           </Typography>
+
           <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
             <Typography as="a" href="#" className="opacity-80 transition-opacity hover:opacity-100">
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" >

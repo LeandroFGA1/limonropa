@@ -23,7 +23,7 @@ const AccordionCustomAnimation = ({ tabNumber, accordionData }) => {
             {item.question}
           </AccordionHeader>
           <AccordionBody>
-            {item.answer} <strong>Tab number: {tabNumber}</strong>
+            {item.answer} 
           </AccordionBody>
         </Accordion>
       ))}
