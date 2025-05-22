@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+"use client"
 
-const AnimatedPercentage = ({ target }) => {
+import { useEffect, useRef, useState } from "react"
+
+const AnimatedPercentage = ({ target, className = "" }) => {
   const [count, setCount] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [startCool, setStartCool] = useState(false)
@@ -15,7 +17,7 @@ const AnimatedPercentage = ({ target }) => {
           observer.disconnect()
         }
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     )
 
     if (elementRef.current) observer.observe(elementRef.current)
@@ -27,7 +29,7 @@ const AnimatedPercentage = ({ target }) => {
     if (!isVisible) return
 
     let start = 0
-    const end = parseInt(target, 10)
+    const end = Number.parseInt(target, 10)
     const duration = 3000 // 3s para contar
     const incrementTime = Math.floor(duration / end)
 
@@ -54,11 +56,12 @@ const AnimatedPercentage = ({ target }) => {
     <span
       ref={elementRef}
       className={`transition-colors duration-[3000ms] 
-        ${isBold ? 'font-bold' : 'font-normal'} 
-        ${startCool ? 'text-black animate-heat' : 'text-crimson'}
+        ${isBold ? "font-bold" : "font-normal"} 
+        ${startCool ? "text-main3 animate-heat" : "text-crimson"}
+        ${className}
       `}
     >
-      {isVisible ? `${count}%` : '00%'}
+      {isVisible ? `${count}%` : "00%"}
     </span>
   )
 }

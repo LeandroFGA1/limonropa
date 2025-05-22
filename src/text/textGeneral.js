@@ -135,7 +135,7 @@ export default{
             items: [
               {
                 title: "Queremos que el planeta tenga futuro",
-                image: "logo"
+                image: "card2"
               },
               {
                 title: "Para reutilizar al máximo los recursos residuales",

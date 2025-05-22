@@ -32,7 +32,15 @@ import scrollToB from "./scroll-to-b.svg"
 import chatIcon from "./chatIcon.svg"
 import instagramIcon from "./instagramIcon.png"
 import whatsappIcon from "./whatsappIcon.png"
-
+import card7 from "./01-00.png"
+import card8 from "./01-01.png"
+import card9 from "./02-00.png"
+import card10 from "./02-01.png"
+import card11 from "./03-00.jpg"
+import card12 from "./03-01.jpg"
+import card13 from "./04-00.png"
+import card14 from "./05-00.jpg"
+import card15 from "./05-01.jpg"
 import product3 from "./products/3.jpg"
 import product4 from "./products/4.jpg"
 import product5 from "./products/5.jpg"
@@ -56,6 +64,15 @@ export default {
     "card4":card4,
     "card5":card5,
     "card6":card6,
+    "card7":card7,
+    "card8":card8,
+    "card9":card9,
+    "card10":card10,
+    "card11":card11,
+    "card12":card12,
+    "card13":card13,
+    "card14":card14,
+    "card15":card15,
     "banner1":banner1,
     "banner2":banner2,
     "banner3":banner3,

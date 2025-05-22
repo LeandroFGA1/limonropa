@@ -31,12 +31,12 @@ const AboutUss = () => {
               <p className='text-center text-xl font-thin w-[90%]'>{textGeneral.aboutUs.mision.text}</p>
             </div>
             <div className='w-full h-[50%] md:w-[50%] md:h-full  aspect-[4/3] flex items-center justify-center'>
-              <img src={directory.icon1} alt="imagen" className=' h-[90%]' />
+              <img src={directory.card2} alt="imagen" className=' h-[90%]' />
             </div>
           </li>
           <li className=' w-full h-[140vh] md:h-[calc(100vh-100px)]  flex flex-col md:flex-row items-center justify-center gap-5'>
             <div className='w-full h-[50%] md:w-[50%] md:h-full  aspect-[4/3] flex items-center justify-center'>
-              <img src={directory.icon1} alt="imagen" className=' h-[90%]' />
+              <img src={directory.card12} alt="imagen" className=' h-[90%]' />
             </div>
             <div className='w-full h-[50%] md:w-[50%] md:h-full  flex flex-col items-center justify-center gap-5'>
               <h3 className='text-3xl capitalize'>{textGeneral.aboutUs.vision.title}</h3>
