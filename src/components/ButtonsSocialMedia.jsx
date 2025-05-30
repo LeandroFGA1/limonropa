@@ -29,7 +29,14 @@ const ButtonsSocialMedia = () => {
 
         
         <div className='w-full hover:backdrop-blur-lg hover:bg-main/50 transition-all bg-transparent duration-300 flex items-center justify-center'>
-            <img src={directory.instagramIcon} alt="" className='h-16 w-16 cursor-pointer' aria-label="Seguir en Instagram" title='contactanos por instagram' />
+        <a href="https://www.instagram.com/calbercruz"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="flex justify-center items-center"
+        >
+          <img src={directory.instagramIcon} alt="" className='h-16 w-16 cursor-pointer' aria-label="Seguir en Instagram" title='contactanos por instagram' />
+        </a>
+            
         </div>
         
       </div>
